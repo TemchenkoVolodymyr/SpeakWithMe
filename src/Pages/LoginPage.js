@@ -12,9 +12,9 @@ export const LoginPage = () => {
    const createNewUser = (e) => {
       e.preventDefault()
 
-      loginRequest.createUser(email,name,password,confirmPassword).then(res => {
+      loginRequest.createUser(email, name, password, confirmPassword).then(res => {
          console.log(res)
-         if(res.status === 200) {
+         if (res.status === 200) {
             setEmail("")
             setName("")
             setPassword("")
@@ -24,8 +24,14 @@ export const LoginPage = () => {
 
    }
 
+   const login = (e) => {
+      e.preventDefault()
+      loginRequest.login(email, password)
+   }
+
    return (
       <>
+         <div></div>
          <form>
             <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder={'email'}/>
             <input value={name} onChange={(e) => setName(e.target.value)} placeholder={'name'}/>
@@ -35,6 +41,13 @@ export const LoginPage = () => {
 
             <button onClick={createNewUser}>create User</button>
          </form>
+         <div>
+            <form>
+               <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder={'email'}/>
+               <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder={'password'}/>
+               <button onClick={login}>login</button>
+            </form>
+         </div>
       </>
    )
 }

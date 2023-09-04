@@ -11,7 +11,7 @@ const ErrorHandler = require("../utility/ErrorHandler");
 const RequestFeatures = require("../utility/RequestFeatures");
 
 exports.createUser = catchAsync(async (req, res) => {
-console.log('te')
+
    const newUser = await Users.create({
       name: req.body.name,
       email: req.body.email,
@@ -66,4 +66,21 @@ exports.getUsers = catchAsync(async (req, res, next) => {
       }
    })
 })
+
+exports.login = catchAsync(async (req, res, next) => {
+   const {email, password} = req.body;
+
+   if (!email || !password) {
+      return next(new ErrorHandler("Please provide email and password", 400))
+   }
+
+   const user = await Users.findOne({email});
+
+   if (!user || !(await user.correctPassword(password, user.password))) {
+      return next(new ErrorHandler("Incorrect Email or Password", 401));
+   }
+
+   tokenUtility.createToken(user._id, 200, user, res)
+   next()
+});
 

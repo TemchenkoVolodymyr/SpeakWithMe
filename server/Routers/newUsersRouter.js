@@ -13,4 +13,7 @@ userRouter.route('/')
 userRouter.route('/:idUser')
    .get(userFunction.getUser)
 
+userRouter.route('/login')
+   .post(userFunction.login)
+
 module.exports = userRouter
