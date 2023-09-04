@@ -11,7 +11,7 @@ const ErrorHandler = require("../utility/ErrorHandler");
 const RequestFeatures = require("../utility/RequestFeatures");
 
 exports.createUser = catchAsync(async (req, res) => {
-
+console.log('te')
    const newUser = await Users.create({
       name: req.body.name,
       email: req.body.email,
