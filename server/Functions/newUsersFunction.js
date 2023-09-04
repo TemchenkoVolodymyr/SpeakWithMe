@@ -17,38 +17,38 @@ exports.createUser = catchAsync(async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       confirmPassword: req.body.confirmPassword,
-      photo:req.body.photo || null,
+      photo: req.body.photo || null,
       socialNetwork: req.body.socialNetwork || null
    });
 
    tokenUtility.createToken(newUser._id, 200, newUser, res)
 });
 
-exports.getUser = catchAsync(async (req,res,next) => {
+exports.getUser = catchAsync(async (req, res, next) => {
 
-      const param = req.params.id
-      let query = Users.findById(param);
-
-
-      const doc = await query
+   const param = req.params.id
+   let query = Users.findById(param);
 
 
-      if (!doc) {
-         return next(new ErrorHandler('No doc found by ID', 404))
+   const doc = await query
+
+
+   if (!doc) {
+      return next(new ErrorHandler('No doc found by ID', 404))
+   }
+
+   res.status(200).json({
+      status: 'Success',
+      data: {
+         doc
       }
-
-      res.status(200).json({
-         status: 'Success',
-         data: {
-            doc
-         }
-      })
+   })
 });
 
-exports.getUsers =  catchAsync(async (req,res,next) => {
+exports.getUsers = catchAsync(async (req, res, next) => {
 
    let filter = {};
-   if(req.params.id) filter = {idUser:req.params.id}
+   if (req.params.id) filter = {idUser: req.params.id}
 
    const documents = new RequestFeatures(Users.find(filter), req.query).filter().sort().fields().pagination();
    if (!documents) {
@@ -56,7 +56,6 @@ exports.getUsers =  catchAsync(async (req,res,next) => {
    }
    let doc = await documents.query
 
-   // SEND REQUEST
    const result = await doc
 
    res.status(200).json({
