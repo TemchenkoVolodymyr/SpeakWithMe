@@ -33,9 +33,8 @@ const usersSchema = new mongoose.Schema({
          message: "Passwords are not the same"
       }
    },
-   token:String,
    timestamps: true,
-   photo:String,
+   photo:String || null,
    socialNetwork: Array || null
 
 })
