@@ -1,5 +1,5 @@
 import {useState} from "react";
-import axios from "axios";
+import {loginRequest} from "../ApiRequests/Login/Login";
 
 
 export const LoginPage = () => {
@@ -11,18 +11,17 @@ export const LoginPage = () => {
 
    const createNewUser = (e) => {
       e.preventDefault()
-      return axios.post('http://localhost:3001/users', {
-         email,
-         name,
-         password,
-         confirmPassword,
-         photo: null,
-         socialNetwork: null
-      },{
-         headers: {
-            "Content-Type": "application/json"
+
+      loginRequest.createUser(email,name,password,confirmPassword).then(res => {
+         console.log(res)
+         if(res.status === 200) {
+            setEmail("")
+            setName("")
+            setPassword("")
+            setConfirmPassword("")
          }
       })
+
    }
 
    return (
