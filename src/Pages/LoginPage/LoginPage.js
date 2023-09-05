@@ -1,8 +1,8 @@
-import {loginRequest} from "../ApiRequests/Login/Login";
-import LoginForm from "../Forms/LoginForm";
+import {loginRequest} from "../../ApiRequests/Login/Login";
+import LoginForm from "../../Forms/LoginForm";
 import style from './LoginPage.module.scss'
 import {useState} from "react";
-import {authorizationAC} from "../Redux/Authorization/authorizationAC";
+import {authorizationAC} from "../../Redux/Authorization/authorizationAC";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 

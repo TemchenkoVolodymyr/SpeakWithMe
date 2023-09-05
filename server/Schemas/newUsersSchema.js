@@ -34,7 +34,12 @@ const usersSchema = new mongoose.Schema({
       }
    },
    photo: String || null,
-   socialNetwork: Array || null
+   socialNetwork: Array || null,
+
+   //
+   status:String || null,
+   aboutMe:String || null,
+   lookForJob:Boolean || null,
 
 })
 

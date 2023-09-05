@@ -1,0 +1,51 @@
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+
+  .wrapperAvatar {
+    img {
+      max-width: 200px;
+    }
+    .editBtn{
+      padding:5px;
+      background-color: transparent;
+      border:1px solid black;
+      border-radius: 5px;
+      cursor: pointer;
+      letter-spacing: 1.2px;
+      transition: 0.5s ease-in-out;
+      &:hover{
+    color: #c70303;
+        border: 1px solid #cc0101;
+      }
+    }
+  }
+  .wrapperAboutMe{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    .wrapperList{
+      ul{
+        li{
+          list-style: none;
+          padding: 10px 0;
+          cursor:pointer;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid rgba(63, 63, 63, 0.21);
+          svg{
+            font-size: 30px;
+            margin-right: 50px;
+          }
+        }
+      }
+    }
+    .aboutMe{
+      width: 100%;
+      padding-left: 15%;
+    }
+  }
+}
