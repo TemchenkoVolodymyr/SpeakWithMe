@@ -18,7 +18,10 @@ exports.createUser = catchAsync(async (req, res) => {
       password: req.body.password,
       confirmPassword: req.body.confirmPassword,
       photo: req.body.photo || null,
-      socialNetwork: req.body.socialNetwork || null
+      socialNetwork: null,
+      status: null,
+      aboutMe: null,
+      lookForJob: false
    });
 
    tokenUtility.createToken(newUser._id, 200, newUser, res)
@@ -83,4 +86,22 @@ exports.login = catchAsync(async (req, res, next) => {
    tokenUtility.createToken(user._id, 200, user, res)
    next()
 });
+
+exports.updateMe = catchAsync(async (req, res, next) => {
+
+   const doc = await Users.findByIdAndUpdate(req.params.idUser, req.body, {
+      new: true, runValidators: true
+   })
+
+   if (!doc) {
+      return next(new ErrorHandler('No document found by ID to update', 400))
+   }
+   res.status(200).json({
+      status: 'success',
+      data: {
+         date: doc
+      }
+   })
+
+})
 

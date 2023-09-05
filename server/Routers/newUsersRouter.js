@@ -12,6 +12,7 @@ userRouter.route('/')
 
 userRouter.route('/:idUser')
    .get(userFunction.getUser)
+   .patch(userFunction.updateMe)
 
 userRouter.route('/login')
    .post(userFunction.login)

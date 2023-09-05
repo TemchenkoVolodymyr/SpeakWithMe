@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import defaultAvatar from '../../assets/Avatar/default.jpg'
 import NetworkLinks from "./NetworkLinks";
 import {changeAboutMeAC, changeStatusAC, changeUserNameAC} from "../../Redux/Authorization/authorizationAC";
+import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 
 const ProfilePage = () => {
 
@@ -11,7 +12,7 @@ const ProfilePage = () => {
 
    const dispatch = useDispatch()
    const authUserData = useSelector((state) => state.authUser)
-
+console.log(authUserData)
    const changeName = (e) => {
       dispatch(changeUserNameAC(e.target.value))
    }
@@ -29,7 +30,13 @@ const ProfilePage = () => {
          setEditMode(!editMod)
       }else{
 
-
+         UserProfile.updateUser(authUserData._id,{
+            email:authUserData.email,
+            name:authUserData.name,
+            aboutMe:authUserData.aboutMe,
+            lookForJob:authUserData.lookForJob,
+            status:authUserData.status
+         })
          setEditMode(!editMod)
       }
 
