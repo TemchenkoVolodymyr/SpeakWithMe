@@ -68,7 +68,7 @@ console.log(authUserData)
                {editMod ? <input value={authUserData.aboutMe} onChange={changeAboutMe} placeholder={'about me'}/> : <p>{authUserData?.aboutMe}</p> }
             </div>
             <div className={style.wrapperList}>
-               <NetworkLinks></NetworkLinks>
+               <NetworkLinks editMode={editMod} userData={authUserData}></NetworkLinks>
             </div>
          </div>
       </div>
