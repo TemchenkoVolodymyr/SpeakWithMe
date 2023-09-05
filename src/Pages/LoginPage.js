@@ -1,52 +1,38 @@
-import {useState} from "react";
 import {loginRequest} from "../ApiRequests/Login/Login";
+import LoginForm from "../Forms/LoginForm";
+import style from './LoginPage.module.scss'
+import {useState} from "react";
 
 
 export const LoginPage = () => {
-
-   const [email, setEmail] = useState("")
-   const [name, setName] = useState("")
-   const [password, setPassword] = useState("")
-   const [confirmPassword, setConfirmPassword] = useState("")
-
-   const createNewUser = (e) => {
-      e.preventDefault()
+   const [switchForm, setSwitchForm] = useState('login')
+   const createNewUser = (email, name, password, confirmPassword) => {
 
       loginRequest.createUser(email, name, password, confirmPassword).then(res => {
-         console.log(res)
          if (res.status === 200) {
-            setEmail("")
-            setName("")
-            setPassword("")
-            setConfirmPassword("")
          }
       })
-
    }
 
-   const login = (e) => {
-      e.preventDefault()
+   const login = (email, password) => {
       loginRequest.login(email, password)
+   }
+
+   const switchLoginFormHandler = () => {
+      setSwitchForm('login')
+   }
+   const switchRegisterFormHandler = () => {
+      setSwitchForm('registration')
    }
 
    return (
       <>
-         <div></div>
-         <form>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder={'email'}/>
-            <input value={name} onChange={(e) => setName(e.target.value)} placeholder={'name'}/>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder={'password'}/>
-            <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
-                   placeholder={'confirm password'}/>
-
-            <button onClick={createNewUser}>create User</button>
-         </form>
-         <div>
-            <form>
-               <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder={'email'}/>
-               <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder={'password'}/>
-               <button onClick={login}>login</button>
-            </form>
+         <div className={style.container}>
+            {switchForm === 'login' ?
+               <LoginForm switchFormRegister={switchRegisterFormHandler} typeOfForm={'login'}
+                          handleSubmit={login}></LoginForm>
+               :
+               <LoginForm switchFormLogin={switchLoginFormHandler} handleSubmit={createNewUser}></LoginForm>}
          </div>
       </>
    )

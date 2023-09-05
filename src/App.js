@@ -1,10 +1,13 @@
-import './App.css';
+import './App.module.scss';
 import LoginPage from "./Pages/LoginPage";
+import style from './App.module.scss'
 
 function App() {
    return (
       <>
-         <LoginPage></LoginPage>
+
+            <LoginPage></LoginPage>
+
       </>
    );
 }
