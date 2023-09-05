@@ -1,5 +1,3 @@
-
-
 export const initialState = {
-   test:null
+   authUser: null
 }

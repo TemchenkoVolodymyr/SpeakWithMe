@@ -7,10 +7,10 @@ let Registration = ({handleSubmit, switchFormLogin}) => {
 
    const loginData = useSelector((state) => state.form)
 
-   const name = loginData.registration?.values?.email
+   const name = loginData.registration?.values?.name
    const email = loginData.registration?.values?.email
-   const password = loginData.registration?.values?.email
-   const confirmPassword = loginData.registration?.values?.email
+   const password = loginData.registration?.values?.password
+   const confirmPassword = loginData.registration?.values?.confirmPassword
 
    const registerHandler = (e) => {
       e.preventDefault()
@@ -25,16 +25,16 @@ let Registration = ({handleSubmit, switchFormLogin}) => {
                <Field name="name" component="input" type="text"/>
             </div>
             <div className={style.wrapperFields}>
-               <label htmlFor="Email">Email</label>
-               <Field name="Email" component="input" type="email"/>
+               <label htmlFor="email">Email</label>
+               <Field name="email" component="input" type="email"/>
             </div>
             <div className={style.wrapperFields}>
                <label htmlFor="password">Password</label>
                <Field name="password" component="input" type="password"/>
             </div>
             <div className={style.wrapperFields}>
-               <label htmlFor="ConfirmPassword">Confirm Password</label>
-               <Field name="ConfirmPassword" component="input" type="password"/>
+               <label htmlFor="confirmPassword">Confirm Password</label>
+               <Field name="confirmPassword" component="input" type="password"/>
             </div>
             <button className={style.submitBtn} type="submit">Registration</button>
          </div>
