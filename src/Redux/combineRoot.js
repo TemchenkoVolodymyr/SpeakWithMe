@@ -3,10 +3,12 @@ import { reducer as formReducer } from 'redux-form'
 import authorizationReducer from "./Authorization/authorizationReducer";
 import {isAuthReducer} from "./isAuth/isAuthReducer";
 import {postsReducer} from "./Posts/postsReducer";
+import {usersReducer} from "./Users/usersReducer";
 
 export default (combineReducers)({
    form:formReducer,
    authUser:authorizationReducer,
    isAuth:isAuthReducer,
-   postsCurrentUser:postsReducer
+   postsCurrentUser:postsReducer,
+   users:usersReducer
 })
