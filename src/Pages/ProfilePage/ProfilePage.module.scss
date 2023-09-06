@@ -28,9 +28,8 @@
     justify-content: space-between;
     align-items: baseline;
     .wrapperList{
-      ul{
-        li{
-          list-style: none;
+        a{
+          text-decoration: none;
           padding: 10px 0;
           cursor:pointer;
           display: flex;
@@ -41,11 +40,16 @@
             margin-right: 50px;
           }
         }
-      }
     }
     .aboutMe{
       width: 100%;
       padding-left: 15%;
     }
+  }
+  input{
+    padding:5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #c70303;
   }
 }

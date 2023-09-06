@@ -34,7 +34,13 @@ const usersSchema = new mongoose.Schema({
       }
    },
    photo: String || null,
-   socialNetwork: Array || null,
+   socialNetwork: {
+      telegram:String,
+      instagram:String,
+      youtube:String,
+      portfolio:String,
+      twitter:String
+   } || null,
 
    //
    status:String || null,

@@ -34,31 +34,31 @@ export const changeAboutMeAC = (newAboutMe) => {
    }
 }
 
-export const changeTelegram = (telegram) => {
+export const changeTelegramAC = (telegram) => {
    return{
       type:CHANGE_TELEGRAM,
       telegram
    }
 }
-export const changeInstagram = (instagram) => {
+export const changeInstagramAC = (instagram) => {
    return{
       type:CHANGE_INSTAGRAM,
       instagram
    }
 }
-export const changeTwitter = (twitter) => {
+export const changeTwitterAC = (twitter) => {
    return{
       type:CHANGE_TWITTER,
       twitter
    }
 }
-export const changeYouTube = (youtube) => {
+export const changeYouTubeAC = (youtube) => {
    return{
       type:CHANGE_YOUTUBE,
       youtube
    }
 }
-export const changePortfolio = (portfolio) => {
+export const changePortfolioAC = (portfolio) => {
    return{
       type:CHANGE_PORTFOLIO,
       portfolio

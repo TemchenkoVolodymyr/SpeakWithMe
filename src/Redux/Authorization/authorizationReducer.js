@@ -15,6 +15,7 @@ export const CHANGE_PORTFOLIO = "CHANGE_PORTFOLIO"
 
 
 const authorizationReducer = (user = initialState.authUser, action) => {
+
    switch (action.type) {
       case SET_LOGIN_USER : {
          return action.authUserData

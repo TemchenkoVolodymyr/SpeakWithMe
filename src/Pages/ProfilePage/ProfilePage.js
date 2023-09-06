@@ -12,7 +12,7 @@ const ProfilePage = () => {
 
    const dispatch = useDispatch()
    const authUserData = useSelector((state) => state.authUser)
-console.log(authUserData)
+   console.log(authUserData)
    const changeName = (e) => {
       dispatch(changeUserNameAC(e.target.value))
    }
@@ -26,16 +26,16 @@ console.log(authUserData)
    }
 
    const editModeHandler = () => {
-      if(!editMod) {
+      if (!editMod) {
          setEditMode(!editMod)
-      }else{
-
-         UserProfile.updateUser(authUserData._id,{
-            email:authUserData.email,
-            name:authUserData.name,
-            aboutMe:authUserData.aboutMe,
-            lookForJob:authUserData.lookForJob,
-            status:authUserData.status
+      } else {
+         UserProfile.updateUser(authUserData._id, {
+            email: authUserData.email,
+            name: authUserData.name,
+            aboutMe: authUserData.aboutMe,
+            lookForJob: authUserData.lookForJob,
+            status: authUserData.status,
+            socialNetwork: authUserData.socialNetwork
          })
          setEditMode(!editMod)
       }
@@ -57,15 +57,17 @@ console.log(authUserData)
                <p><span>Status :</span> {authUserData.status ? authUserData.status : "---"}</p>}
 
             <div>
-               {editMod ? <input value={authUserData?.lookForJob === 'true' ? 'Yes' : "No"} placeholder={'lookForJob'}></input>
+               {editMod ?
+                  <input value={authUserData?.lookForJob === 'true' ? 'Yes' : "No"} placeholder={'lookForJob'}></input>
                   :
-                  <p>{authUserData?.lookForJob === 'true' ? 'Yes' : "No"}</p> }
+                  <p>{authUserData?.lookForJob === 'true' ? 'Yes' : "No"}</p>}
             </div>
          </div>
          <div className={style.wrapperAboutMe}>
             <div className={style.aboutMe}>
                <p>About me</p>
-               {editMod ? <input value={authUserData.aboutMe} onChange={changeAboutMe} placeholder={'about me'}/> : <p>{authUserData?.aboutMe}</p> }
+               {editMod ? <input value={authUserData.aboutMe} onChange={changeAboutMe} placeholder={'about me'}/> :
+                  <p>{authUserData?.aboutMe}</p>}
             </div>
             <div className={style.wrapperList}>
                <NetworkLinks editMode={editMod} userData={authUserData}></NetworkLinks>
