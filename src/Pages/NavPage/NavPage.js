@@ -5,10 +5,12 @@ import {NavLink} from "react-router-dom";
 const NavPage = () => {
    return (
       <div className={style.container}>
-         <div>
+
             <NavLink to={'/profile'}>Profile</NavLink>
             <NavLink to={'/friends'}>Friends</NavLink>
-         </div>
+            <NavLink to={'/messages'}>Messages</NavLink>
+            <NavLink to={'/settings'}>Settings</NavLink>
+
       </div>
    );
 };

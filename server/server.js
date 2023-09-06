@@ -29,8 +29,10 @@ app.use('/',limiter)
 app.use(express.json())
 
 const userRouter = require('./Routers/newUsersRouter')
+const postRouter = require('./Routers/postRouter')
 
 app.use('/users',userRouter)
+app.use('/posts',postRouter)
 
 
 

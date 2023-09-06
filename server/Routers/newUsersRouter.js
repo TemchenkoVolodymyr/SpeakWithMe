@@ -4,7 +4,7 @@ const express = require('express');
 const userRouter = express.Router();
 const userFunction = require('../Functions/newUsersFunction')
 
-console.log('router')
+
 
 userRouter.route('/')
    .get(userFunction.getUsers)

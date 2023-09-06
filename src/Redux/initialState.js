@@ -1,4 +1,5 @@
 export const initialState = {
    authUser: null,
-   isAuth:false
+   isAuth:false,
+   postsCurrentUser:null
 }

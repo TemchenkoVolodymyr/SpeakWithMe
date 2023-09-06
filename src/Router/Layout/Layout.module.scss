@@ -1,0 +1,18 @@
+.container{
+  display: flex;
+
+  flex-direction: column;
+  header{
+    height: 10vh;
+  }
+  .wrapperMainContent{
+    display: flex;
+    nav{
+      width: 30%;
+      background-color: rgba(5, 5, 5, 0.11);
+    }
+    main{
+      width: 100%;
+    }
+  }
+}

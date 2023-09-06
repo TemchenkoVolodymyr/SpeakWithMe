@@ -12,16 +12,17 @@ export const Layout = () => {
       <>
          <div className={style.container}>
             <header>
-
+               Header SpeakWithMe
             </header>
-            <nav>
-               <NavPage></NavPage>
-            </nav>
-            <main>
-               <Outlet>
-               </Outlet>
-            </main>
-
+            <div className={style.wrapperMainContent}>
+               <nav>
+                  <NavPage></NavPage>
+               </nav>
+               <main>
+                  <Outlet>
+                  </Outlet>
+               </main>
+            </div>
          </div>
       </>
    )

@@ -1,0 +1,16 @@
+.container{
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  a{
+    text-decoration: none;
+    padding:10px 5px;
+    color: #050505;
+    cursor: pointer;
+    &:hover{
+      background-color: rgba(5, 5, 5, 0.18);
+      border-radius: 5px;
+      color:#c70303;
+    }
+  }
+}
