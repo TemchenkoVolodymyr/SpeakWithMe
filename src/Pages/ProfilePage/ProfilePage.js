@@ -3,7 +3,12 @@ import style from './ProfilePage.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import defaultAvatar from '../../assets/Avatar/default.jpg'
 import NetworkLinks from "./NetworkLinks";
-import {changeAboutMeAC, changeStatusAC, changeUserNameAC} from "../../Redux/Authorization/authorizationAC";
+import {
+   changeAboutMeAC,
+   changeLookForJob,
+   changeStatusAC,
+   changeUserNameAC
+} from "../../Redux/Authorization/authorizationAC";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 
 const ProfilePage = () => {
@@ -41,6 +46,10 @@ const ProfilePage = () => {
       }
 
    }
+
+   const changeLookForJobStatus = (e) => {
+      dispatch(changeLookForJob(e.target.checked))
+   }
    return (
       <div className={style.container}>
          <div className={style.wrapperAvatar}>
@@ -57,8 +66,9 @@ const ProfilePage = () => {
                <p><span>Status :</span> {authUserData.status ? authUserData.status : "---"}</p>}
 
             <div>
+               <p>Looking for job</p>
                {editMod ?
-                  <input value={authUserData?.lookForJob === 'true' ? 'Yes' : "No"} placeholder={'lookForJob'}></input>
+                     <input type={'checkbox'} value={authUserData.lookForJob} onChange={changeLookForJobStatus} placeholder={'lookForJob'}></input>
                   :
                   <p>{authUserData?.lookForJob === 'true' ? 'Yes' : "No"}</p>}
             </div>

@@ -1,6 +1,5 @@
 import {
-   CHANGE_ABOUT_ME, CHANGE_INSTAGRAM,
-   CHANGE_LOOK_FOR_JOB, CHANGE_PORTFOLIO,
+   CHANGE_ABOUT_ME, CHANGE_INSTAGRAM, CHANGE_LOOK_FOR_JOB_STATUS, CHANGE_PORTFOLIO,
    CHANGE_STATUS, CHANGE_TELEGRAM, CHANGE_TWITTER,
    CHANGE_USER_NAME, CHANGE_YOUTUBE,
    SET_LOGIN_USER
@@ -62,6 +61,14 @@ export const changePortfolioAC = (portfolio) => {
    return{
       type:CHANGE_PORTFOLIO,
       portfolio
+   }
+}
+
+export const changeLookForJob = (isLooking) => {
+   return {
+      type:CHANGE_LOOK_FOR_JOB_STATUS,
+      isLooking
+
    }
 }
 

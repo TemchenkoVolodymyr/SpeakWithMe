@@ -13,6 +13,8 @@ export const CHANGE_INSTAGRAM = "CHANGE_INSTAGRAM"
 export const CHANGE_TELEGRAM = "CHANGE_TELEGRAM"
 export const CHANGE_PORTFOLIO = "CHANGE_PORTFOLIO"
 
+export const CHANGE_LOOK_FOR_JOB_STATUS = "CHANGE_LOOK_FOR_JOB_STATUS"
+
 
 const authorizationReducer = (user = initialState.authUser, action) => {
 
@@ -30,7 +32,11 @@ const authorizationReducer = (user = initialState.authUser, action) => {
          return {
             ...user, aboutMe: action.newAboutMe
          }
-
+      }
+      case CHANGE_LOOK_FOR_JOB_STATUS : {
+         return {
+            ...user, lookForJob:action.isLooking
+         }
       }
       case CHANGE_TELEGRAM : {
          return {...user, socialNetwork: {...user.socialNetwork, telegram: action.telegram}}
