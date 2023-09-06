@@ -65,6 +65,7 @@ export const changePortfolioAC = (portfolio) => {
 }
 
 export const changeLookForJob = (isLooking) => {
+
    return {
       type:CHANGE_LOOK_FOR_JOB_STATUS,
       isLooking

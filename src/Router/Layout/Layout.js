@@ -1,19 +1,21 @@
 import {Outlet} from "react-router-dom";
 import style from './Layout.module.scss'
 import {useSelector} from "react-redux";
+import NavPage from "../../Pages/NavPage/NavPage";
+import ProfilePage from "../../Pages/ProfilePage/ProfilePage";
 
 
 export const Layout = () => {
 
 
-   return(
+   return (
       <>
          <div className={style.container}>
             <header>
 
             </header>
             <nav>
-
+               <NavPage></NavPage>
             </nav>
             <main>
                <Outlet>

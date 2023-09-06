@@ -13,7 +13,7 @@ import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 
 const ProfilePage = () => {
 
-   const [editMod, setEditMode] = useState(true)
+   const [editMod, setEditMode] = useState(false)
 
    const dispatch = useDispatch()
    const authUserData = useSelector((state) => state.authUser)
@@ -31,6 +31,7 @@ const ProfilePage = () => {
    }
 
    const editModeHandler = () => {
+      console.log(authUserData.lookForJob)
       if (!editMod) {
          setEditMode(!editMod)
       } else {
@@ -48,6 +49,7 @@ const ProfilePage = () => {
    }
 
    const changeLookForJobStatus = (e) => {
+      console.log(e.target.checked)
       dispatch(changeLookForJob(e.target.checked))
    }
    return (
@@ -68,9 +70,9 @@ const ProfilePage = () => {
             <div>
                <p>Looking for job</p>
                {editMod ?
-                     <input type={'checkbox'} value={authUserData.lookForJob} onChange={changeLookForJobStatus} placeholder={'lookForJob'}></input>
+                     <input type={'checkbox'} checked={authUserData.lookForJob} onChange={changeLookForJobStatus} placeholder={'lookForJob'}></input>
                   :
-                  <p>{authUserData?.lookForJob === 'true' ? 'Yes' : "No"}</p>}
+                  <p>{authUserData?.lookForJob ? 'Yes' : "No"}</p>}
             </div>
          </div>
          <div className={style.wrapperAboutMe}>

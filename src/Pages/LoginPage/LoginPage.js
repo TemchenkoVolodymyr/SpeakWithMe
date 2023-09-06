@@ -5,6 +5,7 @@ import {useState} from "react";
 import {authorizationAC} from "../../Redux/Authorization/authorizationAC";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {isAuthAC} from "../../Redux/isAuth/isAuthReducer";
 
 
 export const LoginPage = () => {
@@ -25,7 +26,7 @@ export const LoginPage = () => {
    const login = (email, password) => {
       loginRequest.login(email, password).then(res => {
             if (res.status === 200) {
-
+               dispatch(isAuthAC())
                dispatch(authorizationAC(res.data.data.user))
                localStorage.setItem('token', JSON.stringify(res.data.token))
                navigate('/')

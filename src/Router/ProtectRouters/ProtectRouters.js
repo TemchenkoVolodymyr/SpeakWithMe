@@ -3,10 +3,10 @@ import {Navigate} from "react-router-dom";
 
 
 export const ProtectRouters = ({children}) => {
-   const isAuthUser = useSelector((state) => state.authUser)
+   const isAuth = useSelector((state) => state.isAuth)
+console.log(isAuth)
 
-
-   if(!isAuthUser) {
+   if(!isAuth) {
       return <Navigate to={'/login'}></Navigate>
    }else{
       return children
