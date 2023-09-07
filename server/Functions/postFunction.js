@@ -22,7 +22,7 @@ exports.createPost = async (req,res) => {
       })
    }else{
       res.status(400).json({
-         status:'document didnt create'
+         status:'document has not  created'
       })
    }
 }
@@ -35,7 +35,7 @@ exports.getPostById = async (req,res,next) => {
       next(new ErrorHandler("No documents found by ID to find"), 400)
    }
    const result = await documents
-console.log(documents)
+
 res.status(200).json({
    status:'success',
    result:result.length,

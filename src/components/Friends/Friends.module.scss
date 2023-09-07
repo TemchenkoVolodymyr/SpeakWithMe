@@ -1,0 +1,32 @@
+.container {
+  margin-left: 5px;
+
+  .wrapperItem {
+    display: flex;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    border-radius: 15px;
+
+    .wrapperImage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgba(28, 183, 1, 0.6);
+        cursor: pointer;
+
+        &:hover {
+          color: #c70303;
+        }
+      }
+    }
+
+    img {
+      max-width: 150px;
+    }
+  }
+}

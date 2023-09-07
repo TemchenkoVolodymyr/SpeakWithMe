@@ -30,9 +30,11 @@ app.use(express.json())
 
 const userRouter = require('./Routers/newUsersRouter')
 const postRouter = require('./Routers/postRouter')
+const subRouter = require('./Routers/subscribedFriendsRouter')
 
 app.use('/users',userRouter)
 app.use('/posts',postRouter)
+app.use('/subFriends',subRouter)
 
 
 
