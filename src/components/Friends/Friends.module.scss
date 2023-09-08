@@ -16,17 +16,33 @@
         padding: 10px;
         border-radius: 5px;
         border: none;
-        background-color: rgba(28, 183, 1, 0.6);
         cursor: pointer;
-
-        &:hover {
-          color: #c70303;
-        }
+        width: 100px;
       }
     }
 
     img {
       max-width: 150px;
     }
+  }
+}
+
+.unsubStyle {
+  background-color: #c70303;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    background-color: #18c505;
+    color: #000000;
+  }
+}
+
+.subStyle {
+  background-color: #18c505;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    background-color: #c70303;
+    color: #000000;
   }
 }
