@@ -14,6 +14,7 @@ import {Posts} from "../../ApiRequests/Profile/Posts";
 import {postsAC} from "../../Redux/Posts/postsAC";
 import {userAC} from "../../Redux/Users/User/userAC";
 import {useParams} from "react-router-dom";
+import {DialogFunctions} from "../../ApiRequests/Dialogs/Dialogs";
 
 const ProfilePage = () => {
 
@@ -73,7 +74,7 @@ const ProfilePage = () => {
          post: postText,
          authorName: currentUser.name,
          authorId: currentUser._id,
-         recipientId: '64f77871a74e1627904de8a8'
+         recipientId: authUserData._id
       }
       Posts.createPost(dataOfPost).then(res => {
          if (res.status === 200) {
@@ -82,13 +83,17 @@ const ProfilePage = () => {
          }
       })
    }
+
+   const createDialog = (interlocutorId) => {
+      DialogFunctions.createDialog(authUserData._id,interlocutorId)
+   }
    return (
       <>
          <div className={style.container}>
             <div className={style.wrapperAvatar}>
                <img alt={'avatar'} src={currentUser?.photo ? currentUser?.photo : defaultAvatar}/>
                <button className={style.editBtn} onClick={editModeHandler}>Edit Profile</button>
-               <button>Start conversation</button>
+               <button onClick={() => createDialog(currentUser._id)}>Start conversation</button>
                {editMod ?
                   <input value={currentUser?.name} onChange={changeName} placeholder={'name'}></input>
                   :
