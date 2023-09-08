@@ -3,5 +3,6 @@ export const initialState = {
    isAuth:false,
    postsCurrentUser:null,
    users:null,
-   subscribes:null
+   subscribes:null,
+   user:null
 }

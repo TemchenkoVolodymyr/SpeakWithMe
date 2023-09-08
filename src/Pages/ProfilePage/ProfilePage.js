@@ -12,6 +12,8 @@ import {
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 import {Posts} from "../../ApiRequests/Profile/Posts";
 import {postsAC} from "../../Redux/Posts/postsAC";
+import {userAC} from "../../Redux/Users/User/userAC";
+import {useParams} from "react-router-dom";
 
 const ProfilePage = () => {
 
@@ -21,7 +23,13 @@ const ProfilePage = () => {
    const dispatch = useDispatch()
    const authUserData = useSelector((state) => state.authUser)
    const currentUserPosts = useSelector((state) => state.postsCurrentUser)
+   const currentUser = useSelector((state) => state.user)
+   let {idUserProfile} = useParams()
 
+   useEffect(() => {
+      if(!idUserProfile) idUserProfile = authUserData._id
+      UserProfile.getUser(idUserProfile).then(res => dispatch(userAC(res.data.data.doc)))
+   },[idUserProfile])
 
    const changeName = (e) => {
       dispatch(changeUserNameAC(e.target.value))
@@ -58,13 +66,13 @@ const ProfilePage = () => {
    }
 
    useEffect(() => {
-      Posts.getPosts(authUserData._id).then(res => dispatch(postsAC(res.data)))
-   }, [authUserData])
+      Posts.getPosts(currentUser?._id).then(res => dispatch(postsAC(res.data)))
+   }, [currentUser])
    const createNewPostHandler = () => {
       const dataOfPost = {
          post: postText,
-         authorName: authUserData.name,
-         authorId: authUserData._id,
+         authorName: currentUser.name,
+         authorId: currentUser._id,
          recipientId: '64f77871a74e1627904de8a8'
       }
       Posts.createPost(dataOfPost).then(res => {
@@ -78,35 +86,36 @@ const ProfilePage = () => {
       <>
          <div className={style.container}>
             <div className={style.wrapperAvatar}>
-               <img alt={'avatar'} src={authUserData.photo ? authUserData.photo : defaultAvatar}/>
+               <img alt={'avatar'} src={currentUser?.photo ? currentUser?.photo : defaultAvatar}/>
                <button className={style.editBtn} onClick={editModeHandler}>Edit Profile</button>
+               <button>Start conversation</button>
                {editMod ?
-                  <input value={authUserData.name} onChange={changeName} placeholder={'name'}></input>
+                  <input value={currentUser?.name} onChange={changeName} placeholder={'name'}></input>
                   :
-                  <p> {authUserData.name} </p>}
+                  <p> {currentUser?.name} </p>}
 
                {editMod ?
-                  <input value={authUserData.status} onChange={changeStatus} placeholder={'status'}></input>
+                  <input value={currentUser?.status} onChange={changeStatus} placeholder={'status'}></input>
                   :
-                  <p><span>Status :</span> {authUserData.status ? authUserData.status : "---"}</p>}
+                  <p><span>Status :</span> {currentUser?.status ? currentUser?.status : "---"}</p>}
 
                <div>
                   <p>Looking for job</p>
                   {editMod ?
-                     <input type={'checkbox'} checked={authUserData.lookForJob} onChange={changeLookForJobStatus}
+                     <input type={'checkbox'} checked={currentUser?.lookForJob} onChange={changeLookForJobStatus}
                             placeholder={'lookForJob'}></input>
                      :
-                     <p>{authUserData?.lookForJob ? 'Yes' : "No"}</p>}
+                     <p>{currentUser?.lookForJob ? 'Yes' : "No"}</p>}
                </div>
             </div>
             <div className={style.wrapperAboutMe}>
                <div className={style.aboutMe}>
                   <p>About me</p>
-                  {editMod ? <input value={authUserData.aboutMe} onChange={changeAboutMe} placeholder={'about me'}/> :
-                     <p>{authUserData?.aboutMe}</p>}
+                  {editMod ? <input value={currentUser?.aboutMe} onChange={changeAboutMe} placeholder={'about me'}/> :
+                     <p>{currentUser?.aboutMe}</p>}
                </div>
                <div className={style.wrapperList}>
-                  <NetworkLinks editMode={editMod} userData={authUserData}></NetworkLinks>
+                  <NetworkLinks editMode={editMod} userData={currentUser}></NetworkLinks>
                </div>
             </div>
          </div>
@@ -118,10 +127,10 @@ const ProfilePage = () => {
             {currentUserPosts && currentUserPosts.data.result.map(post => <div>
                <div>
                   <p>{post?.authorName}</p>
-                  <p>{post.date}</p>
+                  <p>{post?.date}</p>
                </div>
                <div>
-                  <p>{post.post}</p>
+                  <p>{post?.post}</p>
                </div>
             </div>)}
          </div>

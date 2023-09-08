@@ -20,7 +20,7 @@ mongoose.connect("mongodb+srv://temcenkovova8:brFMAZAjzkX4ighR@cluster0.4dgfzzn.
 const rateLimit = require('express-rate-limit') ;
 
 const limiter = rateLimit({
-   max: 100,
+   max: 200,
    windowMs:60*60*1000,
    message:"Too many requests, try again later"
 });
@@ -31,10 +31,12 @@ app.use(express.json())
 const userRouter = require('./Routers/newUsersRouter')
 const postRouter = require('./Routers/postRouter')
 const subRouter = require('./Routers/subscribedFriendsRouter')
+const dialogsRouter = require('./Routers/dialogsRouter')
 
 app.use('/users',userRouter)
 app.use('/posts',postRouter)
 app.use('/subFriends',subRouter)
+app.use('/dialogs',dialogsRouter)
 
 
 

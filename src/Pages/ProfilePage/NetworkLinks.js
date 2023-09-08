@@ -35,17 +35,17 @@ const NetworkLinks = ({editMode, userData}) => {
    return (
       <>
 
-            {editMode ? <input value={userData.socialNetwork?.telegram} onChange={changeTelegram} placeholder={'telegram'}/> :
-               <a href={userData.socialNetwork?.telegram} target="_blank" rel="noopener noreferrer"><ImTelegram color={'blue'}></ImTelegram>Telegram</a> }
-            {editMode ? <input value={userData.socialNetwork?.instagram} onChange={changeInstagram} placeholder={'instagram'}/> :
-               <a href={userData.socialNetwork?.instagram} target="_blank" rel="noopener noreferrer"><FiInstagram color={'purple'}></FiInstagram>Instagram</a>}
-            {editMode ? <input value={userData.socialNetwork?.twitter} onChange={changeTwitter} placeholder={'twitter'}/> :
-               <a href={userData.socialNetwork?.twitter} target="_blank" rel="noopener noreferrer"><AiFillTwitterCircle color={'blue'}></AiFillTwitterCircle>Twitter</a>}
-            {editMode ? <input value={userData.socialNetwork?.youtube} onChange={changeYouTube} placeholder={'youtube'}/> :
-               <a href={userData.socialNetwork?.youtube} target="_blank" rel="noopener noreferrer"><SiYoutube color={"red"}></SiYoutube>YouTube</a>}
+            {editMode ? <input value={userData?.socialNetwork?.telegram} onChange={changeTelegram} placeholder={'telegram'}/> :
+               <a href={userData?.socialNetwork?.telegram} target="_blank" rel="noopener noreferrer"><ImTelegram color={'blue'}></ImTelegram>Telegram</a> }
+            {editMode ? <input value={userData?.socialNetwork?.instagram} onChange={changeInstagram} placeholder={'instagram'}/> :
+               <a href={userData?.socialNetwork?.instagram} target="_blank" rel="noopener noreferrer"><FiInstagram color={'purple'}></FiInstagram>Instagram</a>}
+            {editMode ? <input value={userData?.socialNetwork?.twitter} onChange={changeTwitter} placeholder={'twitter'}/> :
+               <a href={userData?.socialNetwork?.twitter} target="_blank" rel="noopener noreferrer"><AiFillTwitterCircle color={'blue'}></AiFillTwitterCircle>Twitter</a>}
+            {editMode ? <input value={userData?.socialNetwork?.youtube} onChange={changeYouTube} placeholder={'youtube'}/> :
+               <a href={userData?.socialNetwork?.youtube} target="_blank" rel="noopener noreferrer"><SiYoutube color={"red"}></SiYoutube>YouTube</a>}
 
-            {editMode ? <input value={userData.socialNetwork?.portfolio} onChange={changePortfolio} placeholder={'portfolio'}/> :
-               <a href={userData.socialNetwork?.portfolio} target="_blank" rel="noopener noreferrer"><GiCometSpark color={"orange"}></GiCometSpark>Portfolio</a>}
+            {editMode ? <input value={userData?.socialNetwork?.portfolio} onChange={changePortfolio} placeholder={'portfolio'}/> :
+               <a href={userData?.socialNetwork?.portfolio} target="_blank" rel="noopener noreferrer"><GiCometSpark color={"orange"}></GiCometSpark>Portfolio</a>}
 
       </>
    );

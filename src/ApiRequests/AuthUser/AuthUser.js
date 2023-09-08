@@ -14,5 +14,9 @@ export const UserProfile = {
    },
    getUsers() {
       return axios.get('http://localhost:3001/users')
+   },
+   getUser(idUser) {
+      console.log(idUser)
+      return axios.get(`http://localhost:3001/users/${idUser}`)
    }
 }

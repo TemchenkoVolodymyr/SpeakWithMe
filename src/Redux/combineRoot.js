@@ -5,6 +5,7 @@ import {isAuthReducer} from "./isAuth/isAuthReducer";
 import {postsReducer} from "./Posts/postsReducer";
 import {usersReducer} from "./Users/usersReducer";
 import {subscribesReducer} from "./Subscribes/subscribesReducer";
+import {userReducer} from "./Users/User/userReducer";
 
 export default (combineReducers)({
    form:formReducer,
@@ -13,4 +14,5 @@ export default (combineReducers)({
    postsCurrentUser:postsReducer,
    users:usersReducer,
    subscribers:subscribesReducer,
+   user:userReducer,
 })

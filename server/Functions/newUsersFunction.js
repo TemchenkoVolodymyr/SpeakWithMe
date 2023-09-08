@@ -29,7 +29,7 @@ exports.createUser = catchAsync(async (req, res) => {
 
 exports.getUser = catchAsync(async (req, res, next) => {
 
-   const param = req.params.id
+   const param = req.params.idUser
    let query = Users.findById(param);
 
 
