@@ -6,6 +6,7 @@ import ProtectRouters from "./Router/ProtectRouters/ProtectRouters";
 import Layout from "./Router/Layout/Layout";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 import Friends from "./components/Friends/Friends";
+import CurrentProfile from "./Pages/ProfilePage/CurrentProfile/CurrentProfile";
 
 function App() {
    return (
@@ -18,6 +19,7 @@ function App() {
             }>
                <Route path={'friends'} element={<Friends/>}></Route>
                <Route path={'profile'} element={<ProfilePage/>}></Route>
+               <Route path={'profile/:idUserProfile'} element={<CurrentProfile/>}></Route>
             </Route>
             <Route path={'login'} element={<LoginPage></LoginPage>}></Route>
          </Routes>

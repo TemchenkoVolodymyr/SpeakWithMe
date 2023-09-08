@@ -4,6 +4,7 @@ import style from './Friends.module.scss'
 import defaultImage from '../../assets/Avatar/default.jpg'
 import {subFriends} from "../../ApiRequests/SubFriends/SubFriends";
 import {subscribesAC} from "../../Redux/Subscribes/subscribesAC";
+import {NavLink} from "react-router-dom";
 
 const Friends = () => {
 
@@ -45,14 +46,16 @@ const Friends = () => {
 
    return (
       <div className={style.container}>
-         {filterUsers && filterUsers.map(user => <div className={style.wrapperItem}>
+         {filterUsers && filterUsers.map(user =>   <NavLink to={`/profile/${user._id}`}><div className={style.wrapperItem}>
+
             <div className={style.wrapperImage}>
                <img src={user.photo || defaultImage} alt={'avatar'}/>
                <p>{user.name}</p>
                {subscribers?.subscribedFriendsId.find(sub => sub === user._id ) ? <button className={style.unsubStyle} onClick={() => subscribe(user._id)}>Unsub</button> : <button className={style.subStyle} onClick={() => subscribe(user._id)}>Sub</button>}
             </div>
             <p>{user.aboutMe || 'I dont have any information about me '}</p>
-         </div>)}
+
+         </div>   </NavLink>) }
       </div>
    );
 };

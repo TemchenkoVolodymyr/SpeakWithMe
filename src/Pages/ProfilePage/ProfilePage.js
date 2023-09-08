@@ -21,7 +21,8 @@ const ProfilePage = () => {
    const dispatch = useDispatch()
    const authUserData = useSelector((state) => state.authUser)
    const currentUserPosts = useSelector((state) => state.postsCurrentUser)
-   console.log(currentUserPosts)
+
+
    const changeName = (e) => {
       dispatch(changeUserNameAC(e.target.value))
    }
