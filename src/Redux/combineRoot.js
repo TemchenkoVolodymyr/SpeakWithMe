@@ -7,6 +7,7 @@ import {usersReducer} from "./Users/usersReducer";
 import {subscribesReducer} from "./Subscribes/subscribesReducer";
 import {userReducer} from "./Users/User/userReducer";
 import {dialogsReducer} from "./Dialogs/dialogsReducer";
+import {currentUserConversationReducer} from "./CurrentUserFromConversation/CurrentUserConversationReducer";
 
 export default (combineReducers)({
    form:formReducer,
@@ -16,5 +17,6 @@ export default (combineReducers)({
    users:usersReducer,
    subscribers:subscribesReducer,
    user:userReducer,
-   dialogs:dialogsReducer
+   dialogs:dialogsReducer,
+   currentUserConversation:currentUserConversationReducer,
 })

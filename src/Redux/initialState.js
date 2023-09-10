@@ -4,5 +4,7 @@ export const initialState = {
    postsCurrentUser:null,
    users:null,
    subscribes:null,
-   user:null
+   user:null,
+   dialogs:null,
+   currentUserConversation:null
 }

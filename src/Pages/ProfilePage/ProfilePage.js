@@ -27,10 +27,12 @@ const ProfilePage = () => {
    const currentUser = useSelector((state) => state.user)
    let {idUserProfile} = useParams()
 
+   const [message, setMessage] = useState("")
+
    useEffect(() => {
-      if(!idUserProfile) idUserProfile = authUserData._id
+      if (!idUserProfile) idUserProfile = authUserData._id
       UserProfile.getUser(idUserProfile).then(res => dispatch(userAC(res.data.data.doc)))
-   },[idUserProfile])
+   }, [idUserProfile])
 
    const changeName = (e) => {
       dispatch(changeUserNameAC(e.target.value))
@@ -84,8 +86,15 @@ const ProfilePage = () => {
       })
    }
 
-   const createDialog = (interlocutorId) => {
-      DialogFunctions.createDialog(authUserData._id,interlocutorId)
+   const createDialog = (interlocutor, message) => {
+      DialogFunctions.getDialogsCurrentAuthUser(authUserData._id).then(res => {
+         if (res.data.data.dialogs.length >= 1) {
+            DialogFunctions.addNewDialogs(authUserData._id, interlocutor, message).then(res => console.log(res))
+         }else{
+            DialogFunctions.createDialog(authUserData._id, interlocutor, message)
+         }
+      })
+
    }
    return (
       <>
@@ -93,7 +102,10 @@ const ProfilePage = () => {
             <div className={style.wrapperAvatar}>
                <img alt={'avatar'} src={currentUser?.photo ? currentUser?.photo : defaultAvatar}/>
                <button className={style.editBtn} onClick={editModeHandler}>Edit Profile</button>
-               <button onClick={() => createDialog(currentUser._id)}>Start conversation</button>
+               <div>
+                  <textarea value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+                  <button onClick={() => createDialog(currentUser, message)}>Start conversation</button>
+               </div>
                {editMod ?
                   <input value={currentUser?.name} onChange={changeName} placeholder={'name'}></input>
                   :

@@ -1,0 +1,19 @@
+.wrapper{
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  .wrapperItem{
+    display: flex;
+    .message{
+      margin-left: 10vh;
+    }
+    .name{
+      background-color:#18c505 ;
+      border-radius: 20px;
+      padding: 5px;
+    }
+  }
+  .date{
+    font-size: 12px;
+  }
+}

@@ -7,6 +7,7 @@ import Layout from "./Router/Layout/Layout";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 import Friends from "./components/Friends/Friends";
 import DialogsPage from "./Pages/DialogsPage/DialogsPage";
+import Dialog from "./Pages/DialogsPage/Dialog/Dialog";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                <Route path={'friends'} element={<Friends/>}></Route>
                <Route path={'profile/:idUserProfile?'} element={<ProfilePage/>}></Route>
                <Route path={'messages'} element={<DialogsPage/>}></Route>
+               <Route path={'dialog/:dialogId'} element={<Dialog/>}></Route>
             </Route>
             <Route path={'login'} element={<LoginPage></LoginPage>}></Route>
          </Routes>
