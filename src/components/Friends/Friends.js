@@ -46,16 +46,19 @@ const Friends = () => {
 
    return (
       <div className={style.container}>
-         {filterUsers && filterUsers.map(user =>   <NavLink to={`/profile/${user._id}`}><div className={style.wrapperItem}>
+         {filterUsers && filterUsers.map(user =>   <div className={style.wrapperItem}>
 
             <div className={style.wrapperImage}>
-               <img src={user.photo || defaultImage} alt={'avatar'}/>
-               <p>{user.name}</p>
-               {subscribers?.subscribedFriendsId.find(sub => sub === user._id ) ? <button className={style.unsubStyle} onClick={() => subscribe(user._id)}>Unsub</button> : <button className={style.subStyle} onClick={() => subscribe(user._id)}>Sub</button>}
+               <NavLink to={`/profile/${user._id}`}><img src={user.photo || defaultImage} alt={'avatar'}/></NavLink>
+               <NavLink to={`/profile/${user._id}`}>{user.name}</NavLink>
+               {subscribers?.subscribedFriendsId.find(sub => sub === user._id ) ? <button className={style.unsubStyle} onClick={() => subscribe(user._id)}>Unfollow</button> : <button className={style.subStyle} onClick={() => subscribe(user._id)}>Follow</button>}
             </div>
-            <p>{user.aboutMe || 'I dont have any information about me '}</p>
+            <div className={style.aboutMe}>
+               <p className={style.aboutMeText}>About me</p>
+               <p >{user.aboutMe || 'I dont have any information about me '}</p>
+            </div>
 
-         </div>   </NavLink>) }
+         </div> ) }
       </div>
    );
 };

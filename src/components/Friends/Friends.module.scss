@@ -1,11 +1,14 @@
 .container {
   margin-left: 5px;
+  overflow-y: auto;
+  height: 100%;
 
   .wrapperItem {
     display: flex;
-    border: 1px solid black;
-    margin-bottom: 5px;
-    border-radius: 15px;
+    border: 1px solid rgba(14, 158, 234, 0.62);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 5px;
 
     .wrapperImage {
       display: flex;
@@ -19,16 +22,27 @@
         cursor: pointer;
         width: 100px;
       }
+
+      a {
+       margin: 20px 0;
+        text-decoration: #18c505 underline;
+        font-size: 20px;
+        border-radius: 20px;
+      }
     }
 
     img {
-      max-width: 150px;
+      max-width: 80px;
     }
-    &:hover{
-      background-color: rgba(0, 0, 0, 0.15);
+    .aboutMe{
+      margin-left: 5vh;
+      .aboutMeText{
+        font-size: 11px;
+      }
     }
   }
-  a{
+
+  a {
     text-decoration: none;
     color: #000000;
   }
