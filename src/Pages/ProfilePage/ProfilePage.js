@@ -10,11 +10,13 @@ import {
    changeUserNameAC
 } from "../../Redux/Authorization/authorizationAC";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
-import {Posts} from "../../ApiRequests/Profile/Posts";
 import {postsAC} from "../../Redux/Posts/postsAC";
 import {userAC} from "../../Redux/Users/User/userAC";
 import {useParams} from "react-router-dom";
 import {DialogFunctions} from "../../ApiRequests/Dialogs/Dialogs";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfilePosts from "./Posts";
+import {Posts} from "../../ApiRequests/Profile/Posts";
 
 const ProfilePage = () => {
 
@@ -25,6 +27,8 @@ const ProfilePage = () => {
    const authUserData = useSelector((state) => state.authUser)
    const currentUserPosts = useSelector((state) => state.postsCurrentUser)
    const currentUser = useSelector((state) => state.user)
+
+   const [choseItem, setChoseItem] = useState('aboutMe')
    let {idUserProfile} = useParams()
 
    const [message, setMessage] = useState("")
@@ -90,67 +94,49 @@ const ProfilePage = () => {
       DialogFunctions.getDialogsCurrentAuthUser(authUserData._id).then(res => {
          if (res.data.data.dialogs.length >= 1) {
             DialogFunctions.addNewDialogs(authUserData._id, interlocutor, message).then(res => console.log(res))
-         }else{
+         } else {
             DialogFunctions.createDialog(authUserData._id, interlocutor, message)
          }
       })
 
    }
+
+   const itemsOfList = ["aboutMe", "networks", "posts"]
+
    return (
       <>
          <div className={style.container}>
             <div className={style.wrapperAvatar}>
-               <img alt={'avatar'} src={currentUser?.photo ? currentUser?.photo : defaultAvatar}/>
-               <button className={style.editBtn} onClick={editModeHandler}>Edit Profile</button>
-               <div>
-                  <textarea value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+               <div className={style.avatar}>
+                  <img alt={'avatar'} src={currentUser?.photo ? currentUser?.photo : defaultAvatar}/>
+                  {editMod ? <input value={currentUser?.name} onChange={changeName} placeholder={'name'}></input>
+                     :
+                     <p> {currentUser?.name.toUpperCase()} </p>}
+               </div>
+               <div className={style.startDialog}>
+                  <textarea placeholder={'write message...'} value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                   <button onClick={() => createDialog(currentUser, message)}>Start conversation</button>
                </div>
-               {editMod ?
-                  <input value={currentUser?.name} onChange={changeName} placeholder={'name'}></input>
-                  :
-                  <p> {currentUser?.name} </p>}
-
-               {editMod ?
-                  <input value={currentUser?.status} onChange={changeStatus} placeholder={'status'}></input>
-                  :
-                  <p><span>Status :</span> {currentUser?.status ? currentUser?.status : "---"}</p>}
-
-               <div>
-                  <p>Looking for job</p>
-                  {editMod ?
-                     <input type={'checkbox'} checked={currentUser?.lookForJob} onChange={changeLookForJobStatus}
-                            placeholder={'lookForJob'}></input>
-                     :
-                     <p>{currentUser?.lookForJob ? 'Yes' : "No"}</p>}
-               </div>
+               <button className={style.editBtn} onClick={editModeHandler}>Edit Profile</button>
             </div>
-            <div className={style.wrapperAboutMe}>
-               <div className={style.aboutMe}>
-                  <p>About me</p>
-                  {editMod ? <input value={currentUser?.aboutMe} onChange={changeAboutMe} placeholder={'about me'}/> :
-                     <p>{currentUser?.aboutMe}</p>}
-               </div>
+            <div className={style.itemsLink}>
+               {itemsOfList.map(item => <button className={choseItem === item ? style.active : null} onClick={() => setChoseItem(item)}>{item}</button>)}
+            </div>
+
+
                <div className={style.wrapperList}>
-                  <NetworkLinks editMode={editMod} userData={currentUser}></NetworkLinks>
+                  {choseItem === 'aboutMe' ? <ProfileInfo editMod={editMod} changeLookForJobStatus={changeLookForJobStatus}
+                                                          changeName={changeName} changeStatus={changeStatus}
+                                                          currentUser={currentUser} changeAboutMe={changeAboutMe}
+                  >
+                  </ProfileInfo> : choseItem === "networks" ?
+                     <NetworkLinks editMode={editMod} userData={currentUser}></NetworkLinks>
+                     :   <ProfilePosts setPostText={setPostText} createNewPostHandler={createNewPostHandler} postText={postText} currentUserPosts={currentUserPosts}></ProfilePosts> }
+
+
                </div>
-            </div>
          </div>
-         <div>
-            <textarea value={postText} onChange={(e) => setPostText(e.target.value)}></textarea>
-            <button onClick={createNewPostHandler}>send</button>
-         </div>
-         <div>
-            {currentUserPosts && currentUserPosts.data.result.map(post => <div>
-               <div>
-                  <p>{post?.authorName}</p>
-                  <p>{post?.date}</p>
-               </div>
-               <div>
-                  <p>{post?.post}</p>
-               </div>
-            </div>)}
-         </div>
+
       </>
    );
 };
