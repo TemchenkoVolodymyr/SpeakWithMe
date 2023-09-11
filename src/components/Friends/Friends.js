@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import style from './Friends.module.scss'
-import defaultImage from '../../assets/Avatar/default.jpg'
+import defaultImage from '../../assets/Avatar/default.png'
 import {subFriends} from "../../ApiRequests/SubFriends/SubFriends";
 import {subscribesAC} from "../../Redux/Subscribes/subscribesAC";
 import {NavLink} from "react-router-dom";

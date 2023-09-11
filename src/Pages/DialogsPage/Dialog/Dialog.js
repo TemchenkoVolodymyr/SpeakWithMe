@@ -3,8 +3,9 @@ import style from './Dialog.module.scss'
 import {useParams} from "react-router-dom";
 import {DialogFunctions} from "../../../ApiRequests/Dialogs/Dialogs";
 import {useSelector} from "react-redux";
-
-
+import defaultImage from '../../../assets/Avatar/default.png'
+import sendIcon from '../../../assets/send.png'
+import {MdOutlineCancelScheduleSend, MdOutlineSendAndArchive} from "react-icons/md";
 const Dialog = () => {
 
    const {dialogId} = useParams()
@@ -22,18 +23,23 @@ const Dialog = () => {
    const addNewMessage = (dialogId) => {
       if (message) {
          DialogFunctions.addNewMessageIntoDialog(authUserData._id, dialogId, message).then(res => {
-            if(res.status === 200) {
+            if (res.status === 200) {
+               setMessage("")
                DialogFunctions.getDialog(authUserData?._id, dialogId).then(res => setDialog(res.data.dialog)).catch(err => console.log(err))
             }
          })
       }
 
    }
-   console.log(dialog)
-   return (
-      <div>
 
-         { dialog && dialog.dialog.map(item => <div className={style.wrapper}>
+   return (
+      <div className={style.container}>
+         <div className={style.headerDialog}>
+            <img src={currentUserConversation.photo || defaultImage} alt={'avatar'}/>
+            <p>{currentUserConversation.name}</p>
+         </div>
+         <div className={style.wrapperDialogs}>
+         {dialog && dialog.dialog.map(item => <div className={style.wrapper}>
             <div className={style.wrapperItem}>
                <p className={style.name}>{item.sender === authUserData._id ? "You" : currentUserConversation.name}</p>
                <p className={style.message}>{item.message}</p>
@@ -42,10 +48,11 @@ const Dialog = () => {
 
             <p className={style.date}>{item.date}</p>
          </div>)}
+         </div>
 
-         <div>
-            <textarea value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-            <button onClick={() => addNewMessage(dialog._id)}>send message</button>
+         <div className={style.textareaWrapper}>
+            <textarea placeholder={'type...'} value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+            <button disabled={!message} className={!message ? style.messageNoExist : style.messageExist} onClick={() => addNewMessage(dialog._id)}>{message ? <MdOutlineSendAndArchive fontSize={40}></MdOutlineSendAndArchive> : <MdOutlineCancelScheduleSend fontSize={40}></MdOutlineCancelScheduleSend>}</button>
          </div>
       </div>
    );

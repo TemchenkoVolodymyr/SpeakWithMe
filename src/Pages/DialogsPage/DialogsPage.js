@@ -5,7 +5,7 @@ import {dialogsAC} from "../../Redux/Dialogs/dialogsAC";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 import {userAC} from "../../Redux/Users/User/userAC";
 import style from './DialogsPage.module.scss'
-import defaultImage from '../../assets/Avatar/default.jpg'
+import defaultImage from '../../assets/Avatar/default.png'
 import {NavLink} from "react-router-dom";
 import {CurrentUserConversationAC} from "../../Redux/CurrentUserFromConversation/CurrentUserConversationAC";
 
@@ -22,19 +22,15 @@ const DialogsPage = () => {
       DialogFunctions.getDialogsCurrentAuthUser(authUserData._id).then(res => dispatch(dialogsAC((res))))
    }, [authUserData])
 
-   console.log(dialogs)
-
-
    useEffect(() => {
 
    }, [dialogs])
 
 const setCurrentUserConversation = (user) => {
-      console.log(user)
       dispatch(CurrentUserConversationAC(user))
 }
    return (
-      <div>
+      <div className={style.container}>
          {dialogs && dialogs[0]?.user.dialogsItem.map(dialog => <div className={style.containerMessage}>
             <NavLink to={`/dialog/${dialog._id}`} onClick={() => setCurrentUserConversation(dialog.interlocutor)}>
                <div>
@@ -42,8 +38,15 @@ const setCurrentUserConversation = (user) => {
                   <p>{dialog.interlocutor.name}</p>
                </div>
                <div className={style.wrapperMessage}>
-                  <p className={style.message}>{dialog.dialog[dialog.dialog.length - 1].message}</p>
-                  <p className={style.date}>last message {dialog.dialog[dialog.dialog.length - 1].date}</p>
+                  <div>
+                     <p className={style.lastMessageText}>last message</p>
+                     <p className={style.message}>{dialog.dialog[dialog.dialog.length - 1].message}</p>
+                  </div>
+                 <div>
+                    <p className={style.lastMessageText}>date of last message</p>
+                    <p className={style.date}>{dialog.dialog[dialog.dialog.length - 1].date}</p>
+                 </div>
+
                </div>
             </NavLink>
          </div>)}

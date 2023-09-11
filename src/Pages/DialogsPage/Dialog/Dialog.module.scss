@@ -1,19 +1,91 @@
-.wrapper{
-  padding: 5px;
+.container {
+  height: 90vh;
+  background-color: rgba(5, 5, 5, 0.09);
   display: flex;
-  justify-content: space-between;
-  .wrapperItem{
+  flex-direction: column;
+  position: relative;
+
+  .wrapper {
+    padding: 5px;
     display: flex;
-    .message{
-      margin-left: 10vh;
+    justify-content: space-between;
+    background-color: rgba(38, 37, 37, 0.13);
+    border-radius: 5px;
+    margin: 5px;
+
+    .wrapperItem {
+      display: flex;
+
+      .message {
+        margin-left: 10vh;
+      }
+
+      .name {
+        background-color: #18c505;
+        border-radius: 20px;
+        padding: 5px;
+      }
     }
-    .name{
-      background-color:#18c505 ;
-      border-radius: 20px;
-      padding: 5px;
+
+    .date {
+      font-size: 12px;
+    }
+
+  }
+
+  .headerDialog {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    background-color: rgba(5, 5, 5, 0.24);
+
+    img {
+      max-width: 70px;
+    }
+
+    p {
+      margin-left: 3vh;
     }
   }
-  .date{
-    font-size: 12px;
+
+  .textareaWrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+
+    textarea {
+      width: 100%;
+      outline: none;
+      border: none;
+      resize: none;
+      padding: 11px;
+    }
+
+    button {
+      border: none;
+      padding: 5px 30px;
+      cursor: pointer;
+    }
+  }
+
+  .messageNoExist {
+    background-color: #c70303;
+  }
+
+  .messageExist {
+    background-color: #18c505;
+  }
+
+  .wrapperDialogs {
+    overflow-y: scroll;
+    height: 80%;
+
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
   }
 }

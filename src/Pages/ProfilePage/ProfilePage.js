@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import style from './ProfilePage.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import defaultAvatar from '../../assets/Avatar/default.jpg'
+import defaultAvatar from '../../assets/Avatar/default.png'
 import NetworkLinks from "./NetworkLinks";
 import {
    changeAboutMeAC,
