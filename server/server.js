@@ -20,7 +20,7 @@ mongoose.connect("mongodb+srv://temcenkovova8:brFMAZAjzkX4ighR@cluster0.4dgfzzn.
 const rateLimit = require('express-rate-limit') ;
 
 const limiter = rateLimit({
-   max: 300,
+   max: 400,
    windowMs:60*60*1000,
    message:"Too many requests, try again later"
 });

@@ -14,8 +14,6 @@ const DialogsPage = () => {
    const dispatch = useDispatch()
    const user = useSelector((state) => state.user)
    const dialogs = useSelector((state) => state.dialogs)
-   const [allDialogs, setAllDialogs] = useState(null)
-   const [allUsersId, setAllUsersId] = useState([])
 
    useEffect(() => {
 
@@ -26,6 +24,7 @@ const DialogsPage = () => {
 
    }, [dialogs])
 
+
 const setCurrentUserConversation = (user) => {
       dispatch(CurrentUserConversationAC(user))
 }
@@ -33,7 +32,7 @@ const setCurrentUserConversation = (user) => {
       <div className={style.container}>
          {dialogs && dialogs[0]?.user.dialogsItem.map(dialog => <div className={style.containerMessage}>
             <NavLink to={`/dialog/${dialog._id}`} onClick={() => setCurrentUserConversation(dialog.interlocutor)}>
-               <div>
+               <div className={style.avatar}>
                   <img src={dialog.interlocutor.photo || defaultImage} alt={'image'}/>
                   <p>{dialog.interlocutor.name}</p>
                </div>

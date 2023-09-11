@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import style from './Dialog.module.scss'
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import {DialogFunctions} from "../../../ApiRequests/Dialogs/Dialogs";
 import {useSelector} from "react-redux";
 import defaultImage from '../../../assets/Avatar/default.png'
@@ -31,13 +31,15 @@ const Dialog = () => {
       }
 
    }
-
+console.log(currentUserConversation)
    return (
       <div className={style.container}>
+         <NavLink to={`/profile/${currentUserConversation.id}`}>
          <div className={style.headerDialog}>
             <img src={currentUserConversation.photo || defaultImage} alt={'avatar'}/>
             <p>{currentUserConversation.name}</p>
          </div>
+         </NavLink>
          <div className={style.wrapperDialogs}>
          {dialog && dialog.dialog.map(item => <div className={style.wrapper}>
             <div className={style.wrapperItem}>

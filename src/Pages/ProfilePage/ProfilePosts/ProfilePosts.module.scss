@@ -1,0 +1,47 @@
+.container {
+  padding: 5px;
+
+  .wrapperPost {
+    background-color: rgba(152, 152, 152, 0.25);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: baseline;
+    border-radius: 5px;
+    padding: 5px;
+
+    .wrapperInfo {
+      font-size: 12px;
+      margin-right: 10vh;
+    }
+  }
+
+  .wrapper {
+    overflow-y: auto;
+    height: 37vh;
+  }
+
+  .wrapperTextarea {
+    width: 100%;
+    display: flex;
+
+    textarea {
+      outline: none;
+      border: none;
+      resize: none;
+      width: 100%;
+      padding:  10px 5px ;
+      background-color: rgba(65, 65, 65, 0.24);
+      &::placeholder{
+        color: #575757;
+      }
+    }
+    button{
+      border-radius: 5px;
+      border: none;
+      background-color: #da0808;
+      padding: 5px 30px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  }
+}

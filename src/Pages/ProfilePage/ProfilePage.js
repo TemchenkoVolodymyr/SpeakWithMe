@@ -12,10 +12,10 @@ import {
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 import {postsAC} from "../../Redux/Posts/postsAC";
 import {userAC} from "../../Redux/Users/User/userAC";
-import {useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import {DialogFunctions} from "../../ApiRequests/Dialogs/Dialogs";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import ProfilePosts from "./Posts";
+import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import {Posts} from "../../ApiRequests/Profile/Posts";
 
 const ProfilePage = () => {
@@ -30,9 +30,9 @@ const ProfilePage = () => {
 
    const [choseItem, setChoseItem] = useState('aboutMe')
    let {idUserProfile} = useParams()
-
+   const dialogs = useSelector((state) => state.dialogs)
    const [message, setMessage] = useState("")
-
+   const navigate = useNavigate()
    useEffect(() => {
       if (!idUserProfile) idUserProfile = authUserData._id
       UserProfile.getUser(idUserProfile).then(res => dispatch(userAC(res.data.data.doc)))
@@ -93,10 +93,28 @@ const ProfilePage = () => {
    const createDialog = (interlocutor, message) => {
       DialogFunctions.getDialogsCurrentAuthUser(authUserData._id).then(res => {
          if (res.data.data.dialogs.length >= 1) {
-            DialogFunctions.addNewDialogs(authUserData._id, interlocutor, message).then(res => console.log(res))
+            const isConversation = res.data.data.dialogs[0].user.dialogsItem.find(dialog => dialog.interlocutor.id === interlocutor._id)
+            if (!isConversation) {
+               DialogFunctions.addNewDialogs(authUserData._id, interlocutor, message).then(res => {
+                  if (res.status === 200) {
+                     setMessage("")
+                     navigate('/messages')
+                  }
+               })
+            }else{
+               alert('You already have conversation with this user')
+               setMessage("")
+            }
          } else {
-            DialogFunctions.createDialog(authUserData._id, interlocutor, message)
+            DialogFunctions.createDialog(authUserData._id, interlocutor, message).then(res => {
+               if (res.status === 200) {
+                  setMessage("")
+                  navigate('/message')
+               }
+            })
          }
+
+
       })
 
    }
@@ -114,27 +132,31 @@ const ProfilePage = () => {
                      <p> {currentUser?.name.toUpperCase()} </p>}
                </div>
                <div className={style.startDialog}>
-                  <textarea placeholder={'write message...'} value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-                  <button onClick={() => createDialog(currentUser, message)}>Start conversation</button>
+                  <textarea placeholder={'write message...'} value={message}
+                            onChange={(e) => setMessage(e.target.value)}></textarea>
+                  <button disabled={!message} onClick={() => createDialog(currentUser, message)}>Start conversation
+                  </button>
                </div>
                <button className={style.editBtn} onClick={editModeHandler}>Edit Profile</button>
             </div>
             <div className={style.itemsLink}>
-               {itemsOfList.map(item => <button className={choseItem === item ? style.active : null} onClick={() => setChoseItem(item)}>{item}</button>)}
+               {itemsOfList.map(item => <button className={choseItem === item ? style.active : null}
+                                                onClick={() => setChoseItem(item)}>{item}</button>)}
             </div>
 
 
-               <div className={style.wrapperList}>
-                  {choseItem === 'aboutMe' ? <ProfileInfo editMod={editMod} changeLookForJobStatus={changeLookForJobStatus}
-                                                          changeName={changeName} changeStatus={changeStatus}
-                                                          currentUser={currentUser} changeAboutMe={changeAboutMe}
-                  >
-                  </ProfileInfo> : choseItem === "networks" ?
-                     <NetworkLinks editMode={editMod} userData={currentUser}></NetworkLinks>
-                     :   <ProfilePosts setPostText={setPostText} createNewPostHandler={createNewPostHandler} postText={postText} currentUserPosts={currentUserPosts}></ProfilePosts> }
+            <div className={style.wrapperList}>
+               {choseItem === 'aboutMe' ? <ProfileInfo editMod={editMod} changeLookForJobStatus={changeLookForJobStatus}
+                                                       changeName={changeName} changeStatus={changeStatus}
+                                                       currentUser={currentUser} changeAboutMe={changeAboutMe}
+               >
+               </ProfileInfo> : choseItem === "networks" ?
+                  <NetworkLinks editMode={editMod} userData={currentUser}></NetworkLinks>
+                  : <ProfilePosts setPostText={setPostText} createNewPostHandler={createNewPostHandler}
+                                  postText={postText} currentUserPosts={currentUserPosts}></ProfilePosts>}
 
 
-               </div>
+            </div>
          </div>
 
       </>
