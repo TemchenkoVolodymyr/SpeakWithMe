@@ -1,0 +1,22 @@
+.container{
+//display: flex;
+  padding: 5px;
+  div{
+    padding:10px;
+    a{
+      text-decoration: none;
+      color:#000000;
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      svg{
+        margin-right: 25px;
+        font-size: 30px;
+      }
+&:hover{
+  background-color: rgba(68, 68, 68, 0.3);
+  border-radius: 5px;
+}
+    }
+  }
+}

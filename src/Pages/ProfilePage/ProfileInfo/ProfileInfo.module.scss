@@ -1,11 +1,17 @@
 
 .container {
+  padding: 5px;
   .title{
     margin-right: 5vh;
     background-color: #c70303;
     padding: 5px;
     border-radius: 5px;
     color:#f8f8f8;
+    display: flex;
+    align-items: center;
+    svg{
+      margin-right: 5px;
+    }
   }
   .aboutMe {
     display: flex;
