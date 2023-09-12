@@ -1,11 +1,9 @@
-import {loginRequest} from "../../ApiRequests/Login/Login";
 import LoginForm from "../../Forms/LoginForm";
 import style from './LoginPage.module.scss'
 import {useState} from "react";
-import {authorizationAC} from "../../Redux/Authorization/authorizationAC";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {isAuthAC} from "../../Redux/isAuth/isAuthReducer";
+import {createUserThunkCreator, loginUserThunkCreator} from "../../Redux/Authorization/authorizationThunkCreator";
 
 
 export const LoginPage = () => {
@@ -14,25 +12,11 @@ export const LoginPage = () => {
 
    const navigate = useNavigate()
    const createNewUser = (email, name, password, confirmPassword) => {
-      loginRequest.createUser(email, name, password, confirmPassword).then(res => {
-         if (res.status === 200) {
-            dispatch(authorizationAC(res.data.data.user))
-            localStorage.setItem('token', JSON.stringify(res.data.token))
-            navigate('/')
-         }
-      })
+      dispatch(createUserThunkCreator(email,name,password,confirmPassword,navigate))
    }
 
    const login = (email, password) => {
-      loginRequest.login(email, password).then(res => {
-            if (res.status === 200) {
-               dispatch(isAuthAC())
-               dispatch(authorizationAC(res.data.data.user))
-               localStorage.setItem('token', JSON.stringify(res.data.token))
-               navigate('/')
-            }
-         }
-      )
+      dispatch(loginUserThunkCreator(email,password,navigate))
    }
 
    const switchLoginFormHandler = () => {

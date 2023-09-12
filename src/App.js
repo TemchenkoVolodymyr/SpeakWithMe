@@ -9,7 +9,6 @@ import Friends from "./components/Friends/Friends";
 import DialogsPage from "./Pages/DialogsPage/DialogsPage";
 import Dialog from "./Pages/DialogsPage/Dialog/Dialog";
 
-
 function App() {
    return (
       <>

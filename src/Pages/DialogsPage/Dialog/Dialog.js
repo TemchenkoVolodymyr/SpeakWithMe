@@ -4,8 +4,8 @@ import {NavLink, useParams} from "react-router-dom";
 import {DialogFunctions} from "../../../ApiRequests/Dialogs/Dialogs";
 import {useSelector} from "react-redux";
 import defaultImage from '../../../assets/Avatar/default.png'
-import sendIcon from '../../../assets/send.png'
 import {MdOutlineCancelScheduleSend, MdOutlineSendAndArchive} from "react-icons/md";
+import Message from "./Message/Message";
 const Dialog = () => {
 
    const {dialogId} = useParams()
@@ -18,7 +18,7 @@ const Dialog = () => {
       DialogFunctions.getDialog(authUserData?._id, dialogId).then(res => setDialog(res.data.dialog)).catch(err => console.log(err))
    }, [dialogId, authUserData])
 
-   console.log(currentUserConversation)
+
 
    const addNewMessage = (dialogId) => {
       if (message) {
@@ -31,7 +31,7 @@ const Dialog = () => {
       }
 
    }
-console.log(currentUserConversation)
+
    return (
       <div className={style.container}>
          <NavLink to={`/profile/${currentUserConversation.id}`}>
@@ -41,15 +41,7 @@ console.log(currentUserConversation)
          </div>
          </NavLink>
          <div className={style.wrapperDialogs}>
-         {dialog && dialog.dialog.map(item => <div className={style.wrapper}>
-            <div className={style.wrapperItem}>
-               <p className={style.name}>{item.sender === authUserData._id ? "You" : currentUserConversation.name}</p>
-               <p className={style.message}>{item.message}</p>
-            </div>
-
-
-            <p className={style.date}>{item.date}</p>
-         </div>)}
+         {dialog && dialog.dialog.map(item => <Message authUserData={authUserData} currentUserConversation={currentUserConversation} item={item}></Message>)}
          </div>
 
          <div className={style.textareaWrapper}>

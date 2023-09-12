@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import style from './Friends.module.scss'
-import defaultImage from '../../assets/Avatar/default.png'
 import {subFriends} from "../../ApiRequests/SubFriends/SubFriends";
 import {subscribesAC} from "../../Redux/Subscribes/subscribesAC";
-import {NavLink} from "react-router-dom";
+import {friendsThunkCreator} from "./FriendsRedux/friendsThunkCreator";
+import Friend from "./Friend/Friend";
 
 const Friends = () => {
 
@@ -15,29 +15,8 @@ const Friends = () => {
    const subscribers = useSelector((state) => state.subscribers)
 
    const subscribe = (idUser) => {
-      subFriends.getSubscribedFriends(authUserData._id).then(res => {
-         if (res.status === 200) {
-            if (res.data.result >= 1) {
 
-               const findCurrentAuthUserSubscribes = res.data.data.result.find(item => item.authUserId === authUserData._id)
-               const checkIsSubscribed = findCurrentAuthUserSubscribes.subscribedFriendsId.find(item => item === idUser)
-
-               if (!checkIsSubscribed) {
-                  findCurrentAuthUserSubscribes.subscribedFriendsId.push(idUser)
-               } else {
-                  const index = findCurrentAuthUserSubscribes.subscribedFriendsId.indexOf(checkIsSubscribed)
-                  findCurrentAuthUserSubscribes.subscribedFriendsId.splice(index,1)
-               }
-
-
-               subFriends.addNewSubscribe(findCurrentAuthUserSubscribes.authUserId, findCurrentAuthUserSubscribes.subscribedFriendsId)
-            } else {
-               subFriends.firstSubscribe(authUserData._id, [idUser]).then(res => console.log(res.data))
-            }
-
-         }
-         dispatch(subscribesAC(...res.data.data.result))
-      }).catch(err => console.log(err))
+      dispatch(friendsThunkCreator(authUserData, idUser))
    }
 
    useEffect(() => {
@@ -46,19 +25,10 @@ const Friends = () => {
 
    return (
       <div className={style.container}>
-         {filterUsers && filterUsers.map(user =>   <div className={style.wrapperItem}>
+         {filterUsers && filterUsers.map(user => <Friend user={user}
+                                                         subscribers={subscribers}
+                                                         subscribe={subscribe}></Friend>)}
 
-            <div className={style.wrapperImage}>
-               <NavLink to={`/profile/${user._id}`}><img src={user.photo || defaultImage} alt={'avatar'}/></NavLink>
-               <NavLink to={`/profile/${user._id}`}>{user.name}</NavLink>
-               {subscribers?.subscribedFriendsId.find(sub => sub === user._id ) ? <button className={style.unsubStyle} onClick={() => subscribe(user._id)}>Unfollow</button> : <button className={style.subStyle} onClick={() => subscribe(user._id)}>Follow</button>}
-            </div>
-            <div className={style.aboutMe}>
-               <p className={style.aboutMeText}>About me</p>
-               <p >{user.aboutMe || 'I dont have any information about me '}</p>
-            </div>
-
-         </div> ) }
       </div>
    );
 };

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import style from './ProfilePage.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import defaultAvatar from '../../assets/Avatar/default.png'
 import NetworkLinks from "./NetworkLinks/NetworkLinks";
 import {
    changeAboutMeAC,
@@ -10,13 +9,16 @@ import {
    changeUserNameAC
 } from "../../Redux/Authorization/authorizationAC";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
-import {postsAC} from "../../Redux/Posts/postsAC";
-import {userAC} from "../../Redux/Users/User/userAC";
-import {NavLink, useNavigate, useParams} from "react-router-dom";
-import {DialogFunctions} from "../../ApiRequests/Dialogs/Dialogs";
+import {useNavigate, useParams} from "react-router-dom";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
-import {Posts} from "../../ApiRequests/Profile/Posts";
+import {
+   createDialogRoomHandler,
+   createPostThunkCreator,
+   getUserPostsThunkCreator,
+   getUserThunkCreator
+} from "../../Redux/ProfilePage/ProfilePageThunkCreator";
+import ProfileHeader from "./ProfileHeader/ProfileHeader";
 
 const ProfilePage = () => {
 
@@ -30,12 +32,13 @@ const ProfilePage = () => {
 
    const [choseItem, setChoseItem] = useState('aboutMe')
    let {idUserProfile} = useParams()
-   const dialogs = useSelector((state) => state.dialogs)
    const [message, setMessage] = useState("")
    const navigate = useNavigate()
+
    useEffect(() => {
       if (!idUserProfile) idUserProfile = authUserData._id
-      UserProfile.getUser(idUserProfile).then(res => dispatch(userAC(res.data.data.doc)))
+
+      dispatch(getUserThunkCreator(idUserProfile))
    }, [idUserProfile])
 
    const changeName = (e) => {
@@ -73,7 +76,9 @@ const ProfilePage = () => {
    }
 
    useEffect(() => {
-      Posts.getPosts(currentUser?._id).then(res => dispatch(postsAC(res.data)))
+
+      dispatch(getUserPostsThunkCreator(currentUser))
+
    }, [currentUser])
    const createNewPostHandler = () => {
       const dataOfPost = {
@@ -82,41 +87,11 @@ const ProfilePage = () => {
          authorId: authUserData._id,
          recipientId: currentUser._id
       }
-      Posts.createPost(dataOfPost).then(res => {
-         if (res.status === 200) {
-            Posts.getPosts(currentUser._id).then(res => dispatch(postsAC(res.data)))
-            setPostText("")
-         }
-      })
+      dispatch(createPostThunkCreator(dataOfPost, currentUser, setPostText))
    }
 
    const createDialog = (interlocutor, message) => {
-      DialogFunctions.getDialogsCurrentAuthUser(authUserData._id).then(res => {
-         if (res.data.data.dialogs.length >= 1) {
-            const isConversation = res.data.data.dialogs[0].user.dialogsItem.find(dialog => dialog.interlocutor.id === interlocutor._id)
-            if (!isConversation) {
-               DialogFunctions.addNewDialogs(authUserData._id, interlocutor, message).then(res => {
-                  if (res.status === 200) {
-                     setMessage("")
-                     navigate('/messages')
-                  }
-               })
-            }else{
-               alert('You already have conversation with this user')
-               setMessage("")
-            }
-         } else {
-            DialogFunctions.createDialog(authUserData._id, interlocutor, message).then(res => {
-               if (res.status === 200) {
-                  setMessage("")
-                  navigate('/message')
-               }
-            })
-         }
-
-
-      })
-
+      createDialogRoomHandler(authUserData, interlocutor, message, setMessage, navigate)
    }
 
    const itemsOfList = ["aboutMe", "networks", "posts"]
@@ -124,21 +99,13 @@ const ProfilePage = () => {
    return (
       <>
          <div className={style.container}>
-            <div className={style.wrapperAvatar}>
-               <div className={style.avatar}>
-                  <img alt={'avatar'} src={currentUser?.photo ? currentUser?.photo : defaultAvatar}/>
-                  {editMod ? <input value={currentUser?.name} onChange={changeName} placeholder={'name'}></input>
-                     :
-                     <p> {currentUser?.name.toUpperCase()} </p>}
-               </div>
-               <div className={style.startDialog}>
-                  <textarea placeholder={'write message...'} value={message}
-                            onChange={(e) => setMessage(e.target.value)}></textarea>
-                  <button disabled={!message} onClick={() => createDialog(currentUser, message)}>Start conversation
-                  </button>
-               </div>
-               <button className={style.editBtn} onClick={editModeHandler}>Edit Profile</button>
-            </div>
+            <ProfileHeader currentUser={currentUser} editMod={editMod}
+                           message={message}
+                           createDialog={createDialog}
+                           editModeHandler={editModeHandler}
+                           setMessage={setMessage}
+                           changeName={changeName}
+            ></ProfileHeader>
             <div className={style.itemsLink}>
                {itemsOfList.map(item => <button className={choseItem === item ? style.active : null}
                                                 onClick={() => setChoseItem(item)}>{item}</button>)}
@@ -154,8 +121,6 @@ const ProfilePage = () => {
                   <NetworkLinks editMode={editMod} userData={currentUser}></NetworkLinks>
                   : <ProfilePosts setPostText={setPostText} createNewPostHandler={createNewPostHandler}
                                   postText={postText} currentUserPosts={currentUserPosts}></ProfilePosts>}
-
-
             </div>
          </div>
 

@@ -12,6 +12,7 @@ import {
    changeYouTubeAC
 } from "../../../Redux/Authorization/authorizationAC";
 import style from './NetworkLinks.module.scss'
+import Network from "./Network";
 
 const NetworkLinks = ({editMode, userData}) => {
    const dispatch = useDispatch()
@@ -35,38 +36,16 @@ const NetworkLinks = ({editMode, userData}) => {
    return (
 
       <div className={style.container}>
-         <div>
-            {editMode ?
-               <input value={userData?.socialNetwork?.telegram} onChange={changeTelegram} placeholder={'telegram'}/> :
-               <a href={userData?.socialNetwork?.telegram} target="_blank" rel="noopener noreferrer"><ImTelegram
-                  color={'blue'}></ImTelegram>Telegram</a>}
-         </div>
-         <div>
-            {editMode ?
-               <input value={userData?.socialNetwork?.instagram} onChange={changeInstagram}
-                      placeholder={'instagram'}/> :
-               <a href={userData?.socialNetwork?.instagram} target="_blank" rel="noopener noreferrer"><FiInstagram
-                  color={'purple'}></FiInstagram>Instagram</a>}
-         </div>
-         <div>
-            {editMode ?
-               <input value={userData?.socialNetwork?.twitter} onChange={changeTwitter} placeholder={'twitter'}/> :
-               <a href={userData?.socialNetwork?.twitter} target="_blank" rel="noopener noreferrer"><AiFillTwitterCircle
-                  color={'blue'}></AiFillTwitterCircle>Twitter</a>}
-         </div>
-         <div>
-            {editMode ?
-               <input value={userData?.socialNetwork?.youtube} onChange={changeYouTube} placeholder={'youtube'}/> :
-               <a href={userData?.socialNetwork?.youtube} target="_blank" rel="noopener noreferrer"><SiYoutube
-                  color={"red"}></SiYoutube>YouTube</a>}
-         </div>
-         <div>
-            {editMode ?
-               <input value={userData?.socialNetwork?.portfolio} onChange={changePortfolio}
-                      placeholder={'portfolio'}/> :
-               <a href={userData?.socialNetwork?.portfolio} target="_blank" rel="noopener noreferrer"><GiCometSpark
-                  color={"orange"}></GiCometSpark>Portfolio</a>}
-         </div>
+         <Network placeholder={'telegram'} title={'telegram'} value={userData?.socialNetwork?.telegram} editMode={editMode} callback={changeTelegram} icon={<ImTelegram
+            color={'blue'}></ImTelegram>}></Network>
+         <Network placeholder={'instagram'} title={'instagram'} value={userData?.socialNetwork?.instagram} editMode={editMode} callback={changeInstagram} icon={<FiInstagram
+            color={'purple'}></FiInstagram>}></Network>
+         <Network placeholder={'twitter'} title={'twitter'} value={userData?.socialNetwork?.twitter} editMode={editMode} callback={changeTwitter} icon={<AiFillTwitterCircle
+            color={'blue'}></AiFillTwitterCircle>}></Network>
+         <Network placeholder={'youtube'} title={'youtube'} value={userData?.socialNetwork?.youtube} editMode={editMode} callback={changeYouTube} icon={<SiYoutube
+            color={'red'}></SiYoutube>}></Network>
+         <Network placeholder={'portfolio'} title={'portfolio'} value={userData?.socialNetwork?.portfolio} editMode={editMode} callback={changePortfolio} icon={<GiCometSpark
+            color={'orange'}></GiCometSpark>}></Network>
       </div>
 
    );

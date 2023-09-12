@@ -1,0 +1,57 @@
+.wrapperItem {
+  display: flex;
+  border: 1px solid rgba(14, 158, 234, 0.62);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 5px;
+
+  .wrapperImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      width: 100px;
+    }
+
+    a {
+      margin: 20px 0;
+      text-decoration: #18c505 underline;
+      font-size: 20px;
+      border-radius: 20px;
+    }
+  }
+
+  img {
+    max-width: 80px;
+  }
+  .aboutMe{
+    margin-left: 5vh;
+    .aboutMeText{
+      font-size: 11px;
+    }
+  }
+}
+.unsubStyle {
+  background-color: #c70303;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    background-color: #18c505;
+    color: #000000;
+  }
+}
+
+.subStyle {
+  background-color: #18c505;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    background-color: #c70303;
+    color: #000000;
+  }
+}
