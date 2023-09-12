@@ -5,7 +5,7 @@ import {RiLogoutBoxRLine} from "react-icons/ri";
 import {logoutAC} from "../../Redux/isAuth/isAuthReducer";
 import defaultAvatar from '../../assets/Avatar/default.png'
 import {NavLink} from "react-router-dom";
-import Search from "./Search/Search";
+import Search from "./Search/Search.tsx";
 
 const Header = () => {
 
