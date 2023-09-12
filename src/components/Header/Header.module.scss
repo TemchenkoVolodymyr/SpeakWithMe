@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  background: #de6161;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2657eb, #de6161);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2657eb, #de6161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+  .logWrapper {
+    display: flex;
+    align-items: center;
+    img{
+      max-width: 40px;
+      margin-right: 3vh;
+    }
+
+    svg {
+      margin-left: 15px;
+      color: #da0808 !important;
+      font-size: 40px;
+      cursor: pointer;
+      transition: 0.5s ease-in-out;
+
+      &:hover {
+        color: #9b0707 !important;
+      }
+    }
+
+    p {
+      background: #ff00cc;
+      background: -webkit-linear-gradient(to right, #333399, #ff00cc);
+      background: linear-gradient(to right, #333399, #ff00cc);
+      padding: 5px 25px;
+      border-radius: 5px 15px;
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background: #0101dc;
+        background: -webkit-linear-gradient(to right, #ff00cc, #333399);
+        background: linear-gradient(to right, #ff00cc, #333399);
+      }
+    }
+  }
+
+  .logoSearch {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .wrapperSearch {
+      margin-left: 20vh;
+      background-color: #f8f8f8;
+      border-radius: 5px 15px;
+      width: 40%;
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+      input{
+        outline: none;
+        border: none;
+        background-color: transparent;
+        width: 90%;
+      }
+      .searchIcon{
+        transition: 0.3s ease-in-out;
+        &:hover{
+          cursor: pointer;
+          color: #606060;
+        }
+      }
+    }
+    .wrapperLogo{
+      p{
+        color:#f8f8f8;
+        font-size: 20px;
+        font-weight: 800;
+        font-family: 'Georgia', Serif;
+        text-shadow: 2px 2px 4px #000000;
+        transition: 0.3s ease-in-out;
+        &:hover{
+          cursor: pointer;
+          color: #3f6193;
+        }
+      }
+    }
+  }
+}

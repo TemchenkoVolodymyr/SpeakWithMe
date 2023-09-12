@@ -5,6 +5,7 @@ import NavPage from "../../Pages/NavPage/NavPage";
 import {useEffect} from "react";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 import {usersAC} from "../../Redux/Users/usersAC";
+import Header from "../../components/Header/Header";
 
 
 export const Layout = () => {
@@ -23,7 +24,7 @@ export const Layout = () => {
       <>
          <div className={style.container}>
             <header>
-               Header SpeakWithMe
+             <Header/>
             </header>
             <div className={style.wrapperMainContent}>
                <nav>
