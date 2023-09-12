@@ -78,13 +78,13 @@ const ProfilePage = () => {
    const createNewPostHandler = () => {
       const dataOfPost = {
          post: postText,
-         authorName: currentUser.name,
-         authorId: currentUser._id,
-         recipientId: authUserData._id
+         authorName: authUserData.name,
+         authorId: authUserData._id,
+         recipientId: currentUser._id
       }
       Posts.createPost(dataOfPost).then(res => {
          if (res.status === 200) {
-            Posts.getPosts(authUserData._id).then(res => dispatch(postsAC(res.data)))
+            Posts.getPosts(currentUser._id).then(res => dispatch(postsAC(res.data)))
             setPostText("")
          }
       })
