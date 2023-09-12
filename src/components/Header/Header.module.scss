@@ -54,7 +54,7 @@
       margin-left: 20vh;
       background-color: #f8f8f8;
       border-radius: 5px 15px;
-      width: 40%;
+      width: 100%;
       padding: 8px;
       display: flex;
       justify-content: space-between;
@@ -62,7 +62,7 @@
         outline: none;
         border: none;
         background-color: transparent;
-        width: 90%;
+        width: 100%;
       }
       .searchIcon{
         transition: 0.3s ease-in-out;
@@ -73,11 +73,12 @@
       }
     }
     .wrapperLogo{
-      p{
+      a{
         color:#f8f8f8;
         font-size: 20px;
         font-weight: 800;
         font-family: 'Georgia', Serif;
+        text-decoration: none;
         text-shadow: 2px 2px 4px #000000;
         transition: 0.3s ease-in-out;
         &:hover{
@@ -87,4 +88,44 @@
       }
     }
   }
+}
+.containerSearch{
+  position: relative;
+}
+.containerPopup{
+  margin-top: 3px;
+  position: absolute;
+  left: 20vh;
+  background: #3a6186;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, rgba(137, 37, 62, 0.84), rgba(58, 97, 134, 0.77));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, rgba(137, 37, 62, 0.89), rgba(58, 97, 134, 0.93)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: block;
+  .wrapperSearchUser{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    margin-bottom: 5px;
+    &:hover{
+      background-color: rgba(5, 5, 5, 0.16);
+      border-radius: 5px;
+    }
+    img{
+      max-width: 50px;
+      margin-right: 5vh;
+    }
+  }
+  a{
+    text-decoration: none;
+    color:#000000;
+  }
+}
+.hiddePopup{
+  display: none;
 }
