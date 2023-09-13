@@ -1,6 +1,6 @@
 import {loginRequest} from "../../ApiRequests/Login/Login";
 import {authorizationAC} from "./authorizationAC.tsx";
-import {isAuthAC} from "../isAuth/isAuthReducer";
+import {isAuthAC} from "../isAuth/isAuthReducer.tsx";
 
 export const createUserThunkCreator = (email,name,password,confirmPassword,navigate) => {
    return async (dispatch) => {

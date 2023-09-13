@@ -1,7 +1,7 @@
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 import {userAC} from "../Users/User/userAC";
 import {Posts} from "../../ApiRequests/Profile/Posts";
-import {postsAC} from "../Posts/postsAC";
+import {postsAC} from "../Posts/postsAC.tsx";
 import {DialogFunctions} from "../../ApiRequests/Dialogs/Dialogs";
 
 export const getUserThunkCreator = (idUserProfile) => {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import style from './Header.module.scss'
 import {RiLogoutBoxRLine} from "react-icons/ri";
-import {logoutAC} from "../../Redux/isAuth/isAuthReducer";
+import {logoutAC} from "../../Redux/isAuth/isAuthReducer.tsx";
 import defaultAvatar from '../../assets/Avatar/default.png'
 import {NavLink} from "react-router-dom";
 import Search from "./Search/Search.tsx";
