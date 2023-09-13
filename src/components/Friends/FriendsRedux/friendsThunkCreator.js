@@ -1,5 +1,5 @@
 import {subFriends} from "../../../ApiRequests/SubFriends/SubFriends";
-import {subscribesAC} from "../../../Redux/Subscribes/subscribesAC";
+import {subscribesAC} from "../../../Redux/Subscribes/subscribesAC.tsx";
 
 export const friendsThunkCreator = (authUserData, idUser) => {
    return async (dispatch) => {

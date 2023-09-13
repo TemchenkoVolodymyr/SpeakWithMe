@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import style from './Friends.module.scss'
 import {subFriends} from "../../ApiRequests/SubFriends/SubFriends";
-import {subscribesAC} from "../../Redux/Subscribes/subscribesAC";
+import {subscribesAC} from "../../Redux/Subscribes/subscribesAC.tsx";
 import {friendsThunkCreator} from "./FriendsRedux/friendsThunkCreator";
 import Friend from "./Friend/Friend";
 

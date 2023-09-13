@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import NavPage from "../../Pages/NavPage/NavPage";
 import {useEffect} from "react";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
-import {usersAC} from "../../Redux/Users/usersAC";
+import {usersAC} from "../../Redux/Users/usersAC.tsx";
 import Header from "../../components/Header/Header";
 
 
