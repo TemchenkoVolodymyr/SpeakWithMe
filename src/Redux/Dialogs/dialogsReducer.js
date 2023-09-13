@@ -1,4 +1,4 @@
-import {initialState} from "../initialState";
+import {initialState} from "../initialState.tsx";
 
 
 export const SET_DIALOGS = 'SET_DIALOGS'

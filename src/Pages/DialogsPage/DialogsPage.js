@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import style from './DialogsPage.module.scss'
-import {CurrentUserConversationAC} from "../../Redux/CurrentUserFromConversation/CurrentUserConversationAC";
+import {CurrentUserConversationAC} from "../../Redux/CurrentUserFromConversation/CurrentUserConversationAC.tsx";
 import {getDialogsThunkCreator} from "../../Redux/Dialogs/dialogsThunkCreator";
 import DialogsSection from "./DialogsSection/DialogsSection";
 

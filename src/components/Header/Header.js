@@ -18,6 +18,7 @@ const Header = () => {
       dispatch(logoutAC())
    }
 
+   console.log(authUserData)
    useEffect(() => {
       const found = []
       users?.map(user => {

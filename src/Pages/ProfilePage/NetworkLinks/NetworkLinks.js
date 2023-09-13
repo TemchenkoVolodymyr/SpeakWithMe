@@ -10,7 +10,7 @@ import {
    changeTelegramAC,
    changeTwitterAC,
    changeYouTubeAC
-} from "../../../Redux/Authorization/authorizationAC";
+} from "../../../Redux/Authorization/authorizationAC.tsx";
 import style from './NetworkLinks.module.scss'
 import Network from "./Network";
 

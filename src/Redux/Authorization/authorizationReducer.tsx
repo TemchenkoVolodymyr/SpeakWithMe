@@ -1,4 +1,5 @@
-import {initialState} from "../initialState";
+import {initialState} from "../initialState.tsx";
+import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
 
 export const SET_LOGIN_USER = 'SET_LOGIN_USER'
@@ -16,7 +17,7 @@ export const CHANGE_PORTFOLIO = "CHANGE_PORTFOLIO"
 export const CHANGE_LOOK_FOR_JOB_STATUS = "CHANGE_LOOK_FOR_JOB_STATUS"
 
 
-const authorizationReducer = (user = initialState.authUser, action) => {
+const authorizationReducer = (user :foundUserType = initialState.authUser, action:any):foundUserType => {
 
    switch (action.type) {
       case SET_LOGIN_USER : {

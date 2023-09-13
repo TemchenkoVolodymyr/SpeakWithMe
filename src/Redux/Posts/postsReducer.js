@@ -1,4 +1,4 @@
-import {initialState} from "../initialState";
+import {initialState} from "../initialState.tsx";
 
 export const SET_POSTS = "SET_POSTS"
 export const postsReducer = (posts = initialState.postsCurrentUser,action) => {

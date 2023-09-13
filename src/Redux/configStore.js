@@ -1,7 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 
 import thunk from 'redux-thunk';
-import { initialState } from './initialState';
+import { initialState } from './initialState.tsx';
 import reducer from './combineRoot';
 
 

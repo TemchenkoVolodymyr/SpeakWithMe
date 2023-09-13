@@ -1,5 +1,5 @@
 import {loginRequest} from "../../ApiRequests/Login/Login";
-import {authorizationAC} from "./authorizationAC";
+import {authorizationAC} from "./authorizationAC.tsx";
 import {isAuthAC} from "../isAuth/isAuthReducer";
 
 export const createUserThunkCreator = (email,name,password,confirmPassword,navigate) => {

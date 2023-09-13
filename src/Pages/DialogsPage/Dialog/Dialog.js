@@ -13,7 +13,7 @@ const Dialog = () => {
    const [dialog, setDialog] = useState(null)
    const [message, setMessage] = useState("")
    const currentUserConversation = useSelector((state) => state.currentUserConversation)
-
+console.log(currentUserConversation)
    useEffect(() => {
       DialogFunctions.getDialog(authUserData?._id, dialogId).then(res => setDialog(res.data.dialog)).catch(err => console.log(err))
    }, [dialogId, authUserData])

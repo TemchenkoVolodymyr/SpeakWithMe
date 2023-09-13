@@ -7,7 +7,7 @@ import {
    changeLookForJob,
    changeStatusAC,
    changeUserNameAC
-} from "../../Redux/Authorization/authorizationAC";
+} from "../../Redux/Authorization/authorizationAC.tsx";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
 import {useNavigate, useParams} from "react-router-dom";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
@@ -29,7 +29,6 @@ const ProfilePage = () => {
    const authUserData = useSelector((state) => state.authUser)
    const currentUserPosts = useSelector((state) => state.postsCurrentUser)
    const currentUser = useSelector((state) => state.user)
-
    const [choseItem, setChoseItem] = useState('aboutMe')
    let {idUserProfile} = useParams()
    const [message, setMessage] = useState("")
