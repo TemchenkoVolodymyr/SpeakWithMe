@@ -1,10 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import style from "../Header.module.scss";
 import {AiOutlineSearch} from "react-icons/ai";
 import {NavLink} from "react-router-dom";
 import defaultAvatar from "../../../assets/Avatar/default.png";
+import {propsSearchType} from "./SearchTypes";
 
-const Search = ({setSearch,search,foundUsers}) => {
+const Search = (props:  propsSearchType ) => {
+
+   const {setSearch ,search,foundUsers} = props
+
    return (
       <>
       <div className={style.containerSearch}>

@@ -34,7 +34,7 @@ const Header = () => {
             <div className={style.wrapperLogo}>
                <NavLink to={'/'}>Speak With Me</NavLink>
             </div>
-            <Search search={search} setSearch={setSearch} foundUsers={foundUsers}></Search>
+            <Search  search={search} setSearch={setSearch} foundUsers={foundUsers}></Search>
          </div>
          <div className={style.logWrapper}>
             <img src={authUserData.photo || defaultAvatar} alt={'avatar'}/>

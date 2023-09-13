@@ -63,7 +63,7 @@
     "jsx": "preserve"
   },
   "include": [
-    "./src/**/*"
+    "./src"
   ]
 
 }
