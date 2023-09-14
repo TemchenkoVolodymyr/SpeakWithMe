@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER_CONVERSATION} from "./CurrentUserConversationReducer.tsx";
+import {SET_CURRENT_USER_CONVERSATION} from "./CurrentUserConversationReducer";
 import {currentUserConversationType} from "../initialStateType";
 
 type CurrentUserConversationActionType = {

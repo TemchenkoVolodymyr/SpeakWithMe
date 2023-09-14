@@ -1,4 +1,4 @@
-import {SET_USERS} from "./usersReducer.tsx";
+import {SET_USERS} from "./usersReducer";
 import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
 type usersActionType = {

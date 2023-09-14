@@ -1,4 +1,4 @@
-import {SET_POSTS} from "./postsReducer.tsx";
+import {SET_POSTS} from "./postsReducer";
 import {PostType} from "../initialStateType";
 
 type postsActionType = {

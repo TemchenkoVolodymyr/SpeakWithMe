@@ -3,7 +3,7 @@ import {
     CHANGE_STATUS, CHANGE_TELEGRAM, CHANGE_TWITTER,
     CHANGE_USER_NAME, CHANGE_YOUTUBE,
     SET_LOGIN_USER
-} from "./authorizationReducer.tsx";
+} from "./authorizationReducer";
 import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
 type authorizationActionType = {

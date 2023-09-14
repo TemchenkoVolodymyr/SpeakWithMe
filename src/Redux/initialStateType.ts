@@ -7,14 +7,13 @@ export type PostType = {
     post:string,
     recipientId:string,
     _id:string
-}
+} | null
 
 export type subscribersType = {
     authUserId:string,
     subscribedFriendsId:Array<string>,
     _id:string
-
-}
+} | null
 
 export type interlocutorType = {
     id:string,
@@ -37,13 +36,13 @@ export type dialogItemsType = {
     _id:string,
 
 }
-export type dialogsType = {
-    user:Array<dialogItemsType>,
+export type dialogsType = [{
+    user:dialogItemsType,
     _id:string
-}
+}]
 
 export type currentUserConversationType = {
     id:string,
     name:string,
     photo:string | null
-}
+} | null

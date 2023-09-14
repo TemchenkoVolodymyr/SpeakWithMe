@@ -13,13 +13,13 @@ const Search = (props:  propsSearchType ) => {
       <>
       <div className={style.containerSearch}>
          <div className={style.wrapperSearch}>
-            <input onChange={(e) => setSearch(e.target.value)} type={"search"} placeholder={'Search for name '} value={search}/>
+            <input onChange={(e) => setSearch(e.target.value)} type={"search"} placeholder={'Search for name '} value ={search!}/>
             <AiOutlineSearch className={style.searchIcon}></AiOutlineSearch>
          </div>
-         <div className={foundUsers.length >= 1 ?  style.containerPopup : style.hiddePopup}>
-            {foundUsers.map(user => <NavLink onClick={() => setSearch("")} to={`/profile/${user._id}`}><div className={style.wrapperSearchUser}>
-                  <img src={user.photo || defaultAvatar} alt={'avatar'}/>
-                  <p>{user.name}</p>
+         <div className={foundUsers && foundUsers?.length >= 1 ?  style.containerPopup : style.hiddePopup}>
+            {foundUsers?.map(user => <NavLink onClick={() => setSearch("")} to={`/profile/${user?._id}`}><div className={style.wrapperSearchUser}>
+                  <img src={user?.photo || defaultAvatar} alt={'avatar'}/>
+                  <p>{user?.name}</p>
                </div> </NavLink>
             )}
          </div>

@@ -1,4 +1,4 @@
-import {initialState} from "../initialState.tsx";
+import {initialState} from "../initialState";
 import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
 
@@ -17,7 +17,7 @@ export const CHANGE_PORTFOLIO = "CHANGE_PORTFOLIO"
 export const CHANGE_LOOK_FOR_JOB_STATUS = "CHANGE_LOOK_FOR_JOB_STATUS"
 
 
-const authorizationReducer = (user :foundUserType = initialState.authUser, action:any):foundUserType => {
+const authorizationReducer = (user  = initialState.authUser, action:any):any => {
 
    switch (action.type) {
       case SET_LOGIN_USER : {
@@ -40,19 +40,19 @@ const authorizationReducer = (user :foundUserType = initialState.authUser, actio
          }
       }
       case CHANGE_TELEGRAM : {
-         return {...user, socialNetwork: {...user.socialNetwork, telegram: action.telegram}}
+         return {...user, socialNetwork: {...user?.socialNetwork, telegram: action.telegram}}
       }
       case CHANGE_TWITTER : {
-         return {...user, socialNetwork: {...user.socialNetwork, twitter: action.twitter}}
+         return {...user, socialNetwork: {...user?.socialNetwork, twitter: action.twitter}}
       }
       case CHANGE_YOUTUBE : {
-         return {...user, socialNetwork: {...user.socialNetwork, youtube: action.youtube}}
+         return {...user, socialNetwork: {...user?.socialNetwork, youtube: action.youtube}}
       }
       case CHANGE_PORTFOLIO: {
-         return {...user, socialNetwork: {...user.socialNetwork, portfolio: action.portfolio}}
+         return {...user, socialNetwork: {...user?.socialNetwork, portfolio: action.portfolio}}
       }
       case CHANGE_INSTAGRAM : {
-         return {...user, socialNetwork: {...user.socialNetwork, instagram: action.instagram}}
+         return {...user, socialNetwork: {...user?.socialNetwork, instagram: action.instagram}}
       }
 
       default :

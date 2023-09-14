@@ -1,4 +1,4 @@
-import {SET_SUBSCRIBES} from "./subscribesReducer.tsx";
+import {SET_SUBSCRIBES} from "./subscribesReducer";
 import {subscribersType} from "../initialStateType";
 
 type subscribesActionType = {

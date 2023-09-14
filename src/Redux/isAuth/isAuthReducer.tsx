@@ -1,11 +1,11 @@
-import {initialState} from "../initialState.tsx";
+import {initialState} from "../initialState";
 
 
 export const SET_IS_AUTH = "SET_IS_AUTH"
 export const LOG_OUT = "LOG_OUT"
 
 
-export const isAuthReducer = (isAuth = initialState.isAuth, action): boolean => {
+export const isAuthReducer = (isAuth = initialState.isAuth, action : any): boolean => {
     switch (action.type) {
         case SET_IS_AUTH :
             return true
