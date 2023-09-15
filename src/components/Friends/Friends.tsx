@@ -15,7 +15,7 @@ const Friends = () => {
 
     const filterUsers = users?.filter(user => user?._id !== authUserData._id)
     const subscribers = useAppSelector((state) => state.subscribers)
-console.log(subscribers)
+
     type subscribesType = [{
         _id: string,
         authUserId: string,

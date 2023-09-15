@@ -6,7 +6,7 @@ import {
 } from "./authorizationReducer";
 import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
-type authorizationActionType = {
+export type authorizationActionType = {
     type: typeof SET_LOGIN_USER,
     authUserData: foundUserType
 
@@ -19,7 +19,7 @@ export const authorizationAC = (authUserData: foundUserType): authorizationActio
 }
 
 
-type changeUserNameActionType = {
+export type changeUserNameActionType = {
     type: typeof CHANGE_USER_NAME,
     newName: string
 }
@@ -30,7 +30,7 @@ export const changeUserNameAC = (newName: string): changeUserNameActionType => {
     }
 }
 
-type changeStatusActionType = {
+export type changeStatusActionType = {
     type: typeof CHANGE_STATUS,
     newStatus: string,
 
@@ -42,7 +42,7 @@ export const changeStatusAC = (newStatus: string): changeStatusActionType => {
     }
 }
 
-type changeAboutMeActionType = {
+export type changeAboutMeActionType = {
     type: typeof CHANGE_ABOUT_ME,
     newAboutMe: string,
 
@@ -54,7 +54,7 @@ export const changeAboutMeAC = (newAboutMe: string): changeAboutMeActionType => 
     }
 }
 
-type changeTelegramActionType = {
+export type changeTelegramActionType = {
     type: typeof CHANGE_TELEGRAM,
     telegram: string
 }
@@ -64,7 +64,7 @@ export const changeTelegramAC = (telegram: string): changeTelegramActionType => 
         telegram
     }
 }
-type changeInstagramActionType = {
+export type changeInstagramActionType = {
     type: typeof CHANGE_INSTAGRAM,
     instagram: string
 }
@@ -74,7 +74,7 @@ export const changeInstagramAC = (instagram: string): changeInstagramActionType 
         instagram
     }
 }
-type changeTwitterActionType = {
+export type changeTwitterActionType = {
     type: typeof CHANGE_TWITTER,
     twitter: string
 }
@@ -84,7 +84,7 @@ export const changeTwitterAC = (twitter: string): changeTwitterActionType => {
         twitter
     }
 }
-type changeYouTubeActionType = {
+export type changeYouTubeActionType = {
     type: typeof CHANGE_YOUTUBE,
     youtube: string,
 }
@@ -95,7 +95,7 @@ export const changeYouTubeAC = (youtube: string): changeYouTubeActionType => {
     }
 }
 
-type changePortfolioActionType = {
+export type changePortfolioActionType = {
     type: typeof CHANGE_PORTFOLIO,
     portfolio: string,
 }
@@ -106,7 +106,7 @@ export const changePortfolioAC = (portfolio: string): changePortfolioActionType 
     }
 }
 
-type changeLookForJob = {
+ export type changeLookForJob = {
     type: typeof CHANGE_LOOK_FOR_JOB_STATUS,
     isLooking: boolean
 }

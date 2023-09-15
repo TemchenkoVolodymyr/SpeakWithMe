@@ -1,5 +1,12 @@
 import {initialState} from "../initialState";
-import {foundUserType} from "../../components/Header/Search/SearchTypes";
+import {
+   authorizationActionType,
+   changeAboutMeActionType,
+   changeInstagramActionType, changeLookForJob,
+   changePortfolioActionType, changeStatusActionType,
+   changeTelegramActionType, changeTwitterActionType, changeUserNameActionType,
+   changeYouTubeActionType
+} from "./authorizationAC";
 
 
 export const SET_LOGIN_USER = 'SET_LOGIN_USER'
@@ -16,8 +23,8 @@ export const CHANGE_PORTFOLIO = "CHANGE_PORTFOLIO"
 
 export const CHANGE_LOOK_FOR_JOB_STATUS = "CHANGE_LOOK_FOR_JOB_STATUS"
 
-
-const authorizationReducer = (user  = initialState.authUser, action:any):any => {
+type authActionsTypes = authorizationActionType | changeUserNameActionType | changeStatusActionType | changeAboutMeActionType | changeTelegramActionType | changeInstagramActionType | changeTwitterActionType | changeYouTubeActionType | changePortfolioActionType | changeLookForJob
+const authorizationReducer = (user  = initialState.authUser, action:authActionsTypes) => {
 
    switch (action.type) {
       case SET_LOGIN_USER : {
