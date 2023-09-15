@@ -9,11 +9,11 @@ export type PostType = {
     _id:string
 } | null
 
-export type subscribersType = {
+export type subscribersType = [{
     authUserId:string,
     subscribedFriendsId:Array<string>,
     _id:string
-} | null
+}] | null
 
 export type interlocutorType = {
     id:string,

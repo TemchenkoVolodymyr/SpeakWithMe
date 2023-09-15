@@ -12,16 +12,16 @@ const Friends = () => {
     const users = useAppSelector((state) => state.users)
     const authUserData = useAppSelector((state) => state.authUser)
     const dispatch = useAppDispatch()
-    console.log(users)
+
     const filterUsers = users?.filter(user => user?._id !== authUserData._id)
     const subscribers = useAppSelector((state) => state.subscribers)
-
-    type subscribesType = {
+console.log(subscribers)
+    type subscribesType = [{
         _id: string,
         authUserId: string,
         subscribedFriendsId:Array<string>
-    }
-    const subscribe = (idUser: any) => {
+    }]
+    const subscribe = (idUser: string) => {
 
         dispatch<any>(friendsThunkCreator(authUserData, idUser))
     }
