@@ -3,6 +3,7 @@ import {subscribesAC} from "../../../Redux/Subscribes/subscribesAC";
 import {ThunkAction} from "redux-thunk";
 import {subscribersType} from "../../../Redux/initialStateType";
 import {subscribersActionsType} from "../../../Redux/Subscribes/subscribesReducer";
+import {foundUserType} from "../../Header/Search/SearchTypes";
 
 
 
@@ -11,16 +12,21 @@ import {subscribersActionsType} from "../../../Redux/Subscribes/subscribesReduce
 // the second is state
 // the third is extra arguments
 // the fourth is ActionTypes which dispatch can use
+type subscribedFriendsType = {
+   _id:string,
+   authUserId:string,
+   subscribedFriendsId:Array<string>
+}
 
-export const friendsThunkCreator = (authUserData : any, idUser : string) : ThunkAction<Promise<void>, subscribersType, any, subscribersActionsType> => {
+export const friendsThunkCreator = (authUserData : foundUserType, idUser : string) : ThunkAction<Promise<void>, subscribersType, any, subscribersActionsType> => {
    return async (dispatch ) => {
 
       subFriends.getSubscribedFriends(authUserData._id).then(res => {
          if (res.status === 200) {
             if (res.data.result >= 1) {
 
-               const findCurrentAuthUserSubscribes = res.data.data.result.find((item : any) => item.authUserId === authUserData._id)
-               const checkIsSubscribed = findCurrentAuthUserSubscribes.subscribedFriendsId.find((item :any) => item === idUser)
+               const findCurrentAuthUserSubscribes = res.data.data.result.find((item : subscribedFriendsType) => item.authUserId === authUserData._id)
+               const checkIsSubscribed = findCurrentAuthUserSubscribes.subscribedFriendsId.find((item :string) => item === idUser)
 
                if (!checkIsSubscribed) {
                   findCurrentAuthUserSubscribes.subscribedFriendsId.push(idUser)
@@ -30,7 +36,7 @@ export const friendsThunkCreator = (authUserData : any, idUser : string) : Thunk
                }
                subFriends.addNewSubscribe(findCurrentAuthUserSubscribes.authUserId, findCurrentAuthUserSubscribes.subscribedFriendsId)
             } else {
-               subFriends.firstSubscribe(authUserData._id, [idUser]).then(res => console.log(res.data))
+               subFriends.firstSubscribe(authUserData._id, idUser).then(res => console.log(res.data))
             }
 
          }

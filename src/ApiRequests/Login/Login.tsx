@@ -1,7 +1,8 @@
 import axios from "axios";
+import {socialNetworkType} from "../../components/Header/Search/SearchTypes";
 
 export const loginRequest = {
-   createUser(email : string, name : string, password : string, confirmPassword : string, photo : string, socialNetwork : any) {
+   createUser(email : string, name : string, password : string, confirmPassword : string, photo : string | null, socialNetwork : socialNetworkType) {
       return axios.post('http://localhost:3001/users', {
          email,
          name,

@@ -66,10 +66,6 @@ console.log(dialog)
             <div className={style.textareaWrapper}>
                 <textarea placeholder={'type...'} value={message}
                           onChange={(e) => setMessage(e.target.value)}></textarea>
-                {/*<button disabled={!message} className={!message ? style.messageNoExist : style.messageExist}*/}
-                {/*        onClick={() => addNewMessage(dialog._id)}>{message ?*/}
-                {/*    <MdOutlineSendAndArchive fontSize={40}></MdOutlineSendAndArchive> :*/}
-                {/*    <MdOutlineCancelScheduleSend fontSize={40}></MdOutlineCancelScheduleSend>}</button>*/}
             </div>
         </div>
     );

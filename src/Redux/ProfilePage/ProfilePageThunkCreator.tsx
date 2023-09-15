@@ -54,7 +54,7 @@ type dialogType = {
    }]
 
 }
-export const createDialogRoomHandler = (authUserData: foundUserType, interlocutor: foundUserType, setMessage: Function, navigate: Function, message: any) => {
+export const createDialogRoomHandler = (authUserData: foundUserType, interlocutor: foundUserType,message: string, setMessage: Function,navigate: Function) => {
 
     DialogFunctions.getDialogsCurrentAuthUser(authUserData._id).then(res => {
         if (res.data.data.dialogs.length >= 1) {

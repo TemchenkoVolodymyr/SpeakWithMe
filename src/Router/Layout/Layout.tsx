@@ -2,7 +2,7 @@ import style from './Layout.module.scss'
 import NavPage from "../../Pages/NavPage/NavPage";
 import React, {useEffect} from "react";
 import {UserProfile} from "../../ApiRequests/AuthUser/AuthUser";
-import {usersAC} from "../../Redux/Users/usersAC";
+import {usersAC, usersActionType} from "../../Redux/Users/usersAC";
 import Header from "../../components/Header/Header";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
 import {Outlet} from "react-router-dom";
@@ -14,7 +14,7 @@ export const Layout = () => {
     useEffect(() => {
 
         UserProfile.getUsers().then(res => {
-            dispatch<any>(usersAC(res.data.data.result))
+            dispatch<usersActionType>(usersAC(res.data.data.result))
         })
     }, [currentUser])
 

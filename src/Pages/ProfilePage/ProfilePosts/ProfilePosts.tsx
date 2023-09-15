@@ -1,8 +1,24 @@
 import React from 'react';
 import style from './ProfilePosts.module.scss'
-import Post from "./Post/Post";
+import Post, {postType} from "./Post/Post";
 
-const ProfilePosts = (props : any) => {
+export type currentUserPostsType = {
+    data:{
+        result:Array<postType>
+    },
+    result:number,
+    status:string
+}
+type profilePostsType = {
+    createNewPostHandler:any,
+    setPostText:any,
+    postText:string,
+    currentUserPosts:currentUserPostsType
+
+
+
+}
+const ProfilePosts = (props : profilePostsType) => {
     const {currentUserPosts,postText,createNewPostHandler,setPostText} = props
    return (
     <div className={style.container}>

@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import style from './Friends.module.scss'
 import {subFriends} from "../../ApiRequests/SubFriends/SubFriends";
-import {subscribesAC} from "../../Redux/Subscribes/subscribesAC";
+import {subscribesAC, subscribesActionType} from "../../Redux/Subscribes/subscribesAC";
 import {friendsThunkCreator} from "./FriendsRedux/friendsThunkCreator";
 import Friend from "./Friend/Friend";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
+import {Action} from "redux";
 
 const Friends = () => {
 
@@ -29,7 +30,7 @@ const Friends = () => {
         subFriends.getSubscribedFriends(authUserData._id)
             .then(res => {
                 const data: subscribesType = res.data.data.result
-                dispatch<any>(subscribesAC(data))
+                dispatch<subscribesActionType>(subscribesAC(data))
             })
     }, [authUserData])
 

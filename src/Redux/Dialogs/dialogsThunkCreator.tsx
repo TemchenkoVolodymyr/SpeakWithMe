@@ -1,10 +1,10 @@
 import {DialogFunctions} from "../../ApiRequests/Dialogs/Dialogs";
-import {dialogsAC} from "./dialogsAC";
+import {dialogsAC, dialogsActionType} from "./dialogsAC";
 import {Dispatch} from "react";
-import {Action} from "redux";
+import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
-export const getDialogsThunkCreator = (authUserData : any) => {
-   return async (dispatch : Dispatch<Action>) => {
+export const getDialogsThunkCreator = (authUserData : foundUserType) => {
+   return async (dispatch : Dispatch<dialogsActionType>) => {
       DialogFunctions.getDialogsCurrentAuthUser(authUserData._id)
          .then(res => dispatch(dialogsAC((res.data.data.dialogs))))
    }

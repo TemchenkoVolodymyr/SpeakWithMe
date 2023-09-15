@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
 import style from './Header.module.scss'
 import {RiLogoutBoxRLine} from "react-icons/ri";
 import {logoutAC} from "../../Redux/isAuth/isAuthReducer";
@@ -19,7 +18,6 @@ const Header = () => {
       dispatch(logoutAC())
    }
 
-   console.log(authUserData)
    useEffect(() => {
       const found : any = []
       users?.map(user => {

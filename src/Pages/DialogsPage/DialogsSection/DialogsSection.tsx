@@ -2,9 +2,22 @@ import React from 'react';
 import style from "../DialogsPage.module.scss";
 import {NavLink} from "react-router-dom";
 import defaultImage from "../../../assets/Avatar/default.png";
+import {dialogType, interlocutorType} from "../../../Redux/initialStateType";
 
-const DialogsSection = (props : any) => {
+
+type DialogsSectionPropsType = {
+   dialog:{
+      dialog:Array<dialogType>,
+      interlocutor:interlocutorType,
+      _id:string
+   },
+   setCurrentUserConversation:Function
+}
+const DialogsSection = (props : DialogsSectionPropsType) => {
+
    const {setCurrentUserConversation,dialog} = props
+
+
    return (
       <div className={style.containerMessage}>
          <NavLink to={`/dialog/${dialog._id}`} onClick={() => setCurrentUserConversation(dialog.interlocutor)}>

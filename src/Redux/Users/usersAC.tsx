@@ -1,7 +1,7 @@
 import {SET_USERS} from "./usersReducer";
 import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
-type usersActionType = {
+export type usersActionType = {
     type: typeof SET_USERS,
     newUsers: Array<foundUserType>
 }

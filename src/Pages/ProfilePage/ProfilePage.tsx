@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import style from './ProfilePage.module.scss'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import NetworkLinks from "./NetworkLinks/NetworkLinks";
 import {
    changeAboutMeAC,
@@ -20,6 +20,7 @@ import {
 } from "../../Redux/ProfilePage/ProfilePageThunkCreator";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import {useAppSelector} from "../../Hooks/Hooks";
+import {foundUserType} from "../../components/Header/Search/SearchTypes";
 
 const ProfilePage = () => {
 
@@ -90,12 +91,12 @@ const ProfilePage = () => {
       dispatch<any>(createPostThunkCreator(dataOfPost, currentUser, setPostText))
    }
 
-   const createDialog = (interlocutor : any, message : any) => {
+   const createDialog = (interlocutor : foundUserType, message : string) => {
       createDialogRoomHandler(authUserData, interlocutor, message, setMessage, navigate)
    }
 
    const itemsOfList = ["aboutMe", "networks", "posts"]
-
+console.log(currentUserPosts)
    return (
       <>
          <div className={style.container}>

@@ -4,6 +4,13 @@ import {CurrentUserConversationAC} from "../../Redux/CurrentUserFromConversation
 import {getDialogsThunkCreator} from "../../Redux/Dialogs/dialogsThunkCreator";
 import DialogsSection from "./DialogsSection/DialogsSection";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
+import {currentUserConversationType, interlocutorType} from "../../Redux/initialStateType";
+
+type dialogType = {
+   dialog: Array<dialogType>,
+   interlocutor:interlocutorType,
+   _id:string
+}
 
 const DialogsPage = () => {
    const authUserData = useAppSelector((state) => state.authUser)
@@ -20,7 +27,7 @@ const DialogsPage = () => {
    }, [dialogs])
 
 
-const setCurrentUserConversation = (user : any) => {
+const setCurrentUserConversation = (user :currentUserConversationType) => {
       dispatch(CurrentUserConversationAC(user))
 }
 
