@@ -31,7 +31,7 @@ const ProfilePage = () => {
    const currentUserPosts = useAppSelector((state) => state.postsCurrentUser)
    const currentUser = useAppSelector((state) => state.user)
    const [choseItem, setChoseItem] = useState('aboutMe')
-   let {idUserProfile} = useParams()
+   let {idUserProfile  } : any  = useParams()
    const [message, setMessage] = useState("")
    const navigate = useNavigate()
 
@@ -77,7 +77,7 @@ const ProfilePage = () => {
 
    useEffect(() => {
 
-      dispatch<any>(getUserPostsThunkCreator(currentUser))
+      dispatch<any>(getUserPostsThunkCreator(currentUser ))
 
    }, [currentUser])
    const createNewPostHandler = () => {

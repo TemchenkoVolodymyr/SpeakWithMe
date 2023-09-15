@@ -1,9 +1,12 @@
 import {loginRequest} from "../../ApiRequests/Login/Login";
 import {authorizationAC} from "./authorizationAC";
-import {isAuthAC} from "../isAuth/isAuthReducer";
+import {AuthorizationThunkActionsTypes, isAuthAC} from "../isAuth/isAuthReducer";
+import {ThunkAction} from "redux-thunk";
+import {authActionsTypes} from "./authorizationReducer";
+import {initialStateType} from "../initialState";
 
-export const createUserThunkCreator = (email : string,name : string,password : string,confirmPassword : string,navigate:Function,photo:any,socialNetwork : any) => {
-   return async (dispatch : any) => {
+export const createUserThunkCreator = (email : string,name : string,password : string,confirmPassword : string,navigate:Function,photo:any,socialNetwork : any) : ThunkAction<Promise<void>, initialStateType, any, authActionsTypes>=> {
+   return async (dispatch) => {
       loginRequest.createUser(email, name, password, confirmPassword , photo , socialNetwork).then(res => {
          if (res.status === 200) {
             dispatch(authorizationAC(res.data.data.user))
@@ -14,8 +17,8 @@ export const createUserThunkCreator = (email : string,name : string,password : s
    }
 }
 
-export const loginUserThunkCreator = (email : string,password : string,navigate : Function) => {
-   return async (dispatch : any) => {
+export const loginUserThunkCreator = (email : string,password : string,navigate : Function) : ThunkAction<Promise<void>, initialStateType, any, AuthorizationThunkActionsTypes> => {
+   return async (dispatch) => {
       loginRequest.login(email, password).then(res => {
          if (res.status === 200) {
             dispatch(isAuthAC())

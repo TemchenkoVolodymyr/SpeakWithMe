@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
 import style from './DialogsPage.module.scss'
 import {CurrentUserConversationAC} from "../../Redux/CurrentUserFromConversation/CurrentUserConversationAC";
 import {getDialogsThunkCreator} from "../../Redux/Dialogs/dialogsThunkCreator";
@@ -24,13 +23,16 @@ const DialogsPage = () => {
 const setCurrentUserConversation = (user : any) => {
       dispatch(CurrentUserConversationAC(user))
 }
+
    return (
+
       <div className={style.container}>
-         {dialogs && dialogs[0]?.user.dialogsItem.map(dialog => <DialogsSection
+         {dialogs && dialogs[0]?.user.dialogsItem.map((dialog : any) => <DialogsSection
             setCurrentUserConversation={setCurrentUserConversation}
             dialog={dialog}></DialogsSection>)}
 
       </div>
+
    );
 };
 

@@ -1,7 +1,7 @@
 import {SET_CURRENT_USER_CONVERSATION} from "./CurrentUserConversationReducer";
 import {currentUserConversationType} from "../initialStateType";
 
-type CurrentUserConversationActionType = {
+export type CurrentUserConversationActionType = {
    type : typeof SET_CURRENT_USER_CONVERSATION,
    currentUserConv : currentUserConversationType
 }

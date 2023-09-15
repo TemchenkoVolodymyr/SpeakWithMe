@@ -1,7 +1,7 @@
 import {SET_SUBSCRIBES} from "./subscribesReducer";
 import {subscribersType} from "../initialStateType";
 
-type subscribesActionType = {
+export type subscribesActionType = {
     type: typeof SET_SUBSCRIBES,
     data: subscribersType
 }

@@ -1,7 +1,7 @@
 import {SET_USER} from "./userReducer";
 import {foundUserType} from "../../../components/Header/Search/SearchTypes";
 
-type userActionType = {
+export type userActionType = {
     type: typeof SET_USER,
     user: foundUserType
 }

@@ -1,8 +1,11 @@
 import {initialState} from "../initialState";
 import {PostType} from "../initialStateType";
+import {postsActionType} from "./postsAC";
 
 export const SET_POSTS = "SET_POSTS"
-export const postsReducer = (posts = initialState.postsCurrentUser,action : any) : Array<PostType>  => {
+
+type postsActionsTypes = postsActionType
+export const postsReducer = (posts = initialState.postsCurrentUser,action : postsActionsTypes) : Array<PostType>  => {
 switch (action.type){
 
 case SET_POSTS : {

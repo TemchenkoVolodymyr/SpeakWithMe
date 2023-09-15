@@ -18,7 +18,7 @@ export type foundUserType = {
         socialNetwork: socialNetworkType | null,
         status:string | null,
         _id:string
-    } | null
+    }
 
 
 

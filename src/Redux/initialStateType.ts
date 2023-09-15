@@ -1,3 +1,5 @@
+import {postsActionType} from "./Posts/postsAC";
+import {userActionType} from "./Users/User/userAC";
 
 
 export type PostType = {
@@ -36,13 +38,15 @@ export type dialogItemsType = {
     _id:string,
 
 }
-export type dialogsType = [{
+export type dialogsType = {
     user:dialogItemsType,
     _id:string
-}]
+}
 
 export type currentUserConversationType = {
     id:string,
     name:string,
     photo:string | null
 } | null
+
+export type profilePageActionsTypes = userActionType | postsActionType

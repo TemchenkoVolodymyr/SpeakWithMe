@@ -1,7 +1,7 @@
 import {SET_POSTS} from "./postsReducer";
 import {PostType} from "../initialStateType";
 
-type postsActionType = {
+export type postsActionType = {
     type: typeof SET_POSTS,
     newPosts: Array<PostType>
 }

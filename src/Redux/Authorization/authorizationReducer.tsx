@@ -23,7 +23,7 @@ export const CHANGE_PORTFOLIO = "CHANGE_PORTFOLIO"
 
 export const CHANGE_LOOK_FOR_JOB_STATUS = "CHANGE_LOOK_FOR_JOB_STATUS"
 
-type authActionsTypes = authorizationActionType | changeUserNameActionType | changeStatusActionType | changeAboutMeActionType | changeTelegramActionType | changeInstagramActionType | changeTwitterActionType | changeYouTubeActionType | changePortfolioActionType | changeLookForJob
+export type authActionsTypes = authorizationActionType | changeUserNameActionType | changeStatusActionType | changeAboutMeActionType | changeTelegramActionType | changeInstagramActionType | changeTwitterActionType | changeYouTubeActionType | changePortfolioActionType | changeLookForJob
 const authorizationReducer = (user  = initialState.authUser, action:authActionsTypes) => {
 
    switch (action.type) {
