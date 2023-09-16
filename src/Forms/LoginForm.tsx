@@ -1,6 +1,7 @@
 import React from 'react';
-import Login from "./Login";
-import Registration from "./Registration";
+import Login, {handleSubmitLoginType} from "./Login";
+import Registration, {handleSubmitRegistrationType} from "./Registration";
+
 
 const LoginForm = (props : any) => {
 

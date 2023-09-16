@@ -1,20 +1,33 @@
 import React from 'react';
-import {Field, getFormValues, reduxForm} from "redux-form";
-import {useSelector} from "react-redux";
+import {getFormValues, reduxForm} from "redux-form";
 import style from './Login.module.scss'
 import {useAppSelector} from "../Hooks/Hooks";
+import CreateLoginField from "./CreateLoginField";
 
-let Registration = (props : any) => {
+interface RegistrationFormProps {
+   name:string,
+   email:string,
+   password:string,
+   confirmPassword:string
+   photo: any,
+   socialNetwork: any
+}
+
+export type handleSubmitRegistrationType =  (email : string, name : string, password : string, confirmPassword : string) =>  void
+
+interface RegistrationProps  {
+   handleSubmit : handleSubmitRegistrationType
+   switchFormLogin : () => void
+}
+let Registration = (props:RegistrationProps ) => {
    const {handleSubmit , switchFormLogin} = props
 
-   const loginData = useAppSelector((state) => getFormValues('registration')(state))
+   const loginData : RegistrationFormProps = useAppSelector((state) => getFormValues('registration')(state))
 
    const name = loginData?.name
    const email = loginData?.email
    const password = loginData?.password
    const confirmPassword = loginData?.confirmPassword
-console.log(name)
-console.log(loginData)
    const registerHandler = (e:any) => {
       e.preventDefault()
       handleSubmit(email, name, password, confirmPassword)
@@ -23,22 +36,10 @@ console.log(loginData)
    return (
       <form onSubmit={registerHandler}>
          <div className={style.container}>
-            <div className={style.wrapperFields}>
-               <label htmlFor="name">Name</label>
-               <Field name="name" component="input" type="text"/>
-            </div>
-            <div className={style.wrapperFields}>
-               <label htmlFor="email">Email</label>
-               <Field name="email" component="input" type="email"/>
-            </div>
-            <div className={style.wrapperFields}>
-               <label htmlFor="password">Password</label>
-               <Field name="password" component="input" type="password"/>
-            </div>
-            <div className={style.wrapperFields}>
-               <label htmlFor="confirmPassword">Confirm Password</label>
-               <Field name="confirmPassword" component="input" type="password"/>
-            </div>
+            <CreateLoginField title={'Name'} htmlFor={'name'} typeOfComponent={'text'}></CreateLoginField>
+            <CreateLoginField title={'Email'} htmlFor={'email'} typeOfComponent={'email'}></CreateLoginField>
+            <CreateLoginField title={'Password'} htmlFor={'password'} typeOfComponent={'password'}></CreateLoginField>
+            <CreateLoginField title={'Confirm Password'} htmlFor={'confirmPassword'} typeOfComponent={'password'}></CreateLoginField>
             <button className={style.submitBtn} type="submit">Registration</button>
          </div>
          <div className={style.wrapperSwitchBtn}>
