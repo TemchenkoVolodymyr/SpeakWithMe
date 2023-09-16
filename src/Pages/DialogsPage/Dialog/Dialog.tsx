@@ -6,8 +6,7 @@ import defaultImage from '../../../assets/Avatar/default.png'
 import {MdOutlineCancelScheduleSend, MdOutlineSendAndArchive} from "react-icons/md";
 import Message from "./Message/Message";
 import {useAppSelector} from "../../../Hooks/Hooks";
-import {RootState} from "../../../configStore";
-import {dialogType} from "../../../Redux/initialStateType";
+
 
 type messageType = {
     _id:string,
@@ -15,7 +14,7 @@ type messageType = {
     message: string,
     date: string
 }
-type dialogStateType = {
+export type dialogStateType = {
     dialog: Array<messageType>,
     interlocutor:{
         id:string,
@@ -26,20 +25,24 @@ type dialogStateType = {
 }
 const Dialog = () => {
 
-    const {dialogId} = useParams()
+    const {dialogId } = useParams<{dialogId : string | undefined}>()
     const authUserData = useAppSelector((state) => state.authUser)
     const [dialog, setDialog] = useState<dialogStateType | null>(null)
     const [message, setMessage] = useState("")
     const currentUserConversation = useAppSelector((state) => state.currentUserConversation)
-console.log(dialog)
+
     useEffect(() => {
-        DialogFunctions.getDialog(authUserData?._id, dialogId).then(res => setDialog(res.data.dialog)).catch(err => console.log(err))
+        DialogFunctions.getDialog(authUserData?._id, dialogId).then(res => {
+
+            setDialog(res.data.dialog)
+        }).catch(err => console.log(err))
     }, [dialogId, authUserData])
 
 
-    const addNewMessage = (dialogId: string) => {
+    const addNewMessage = (dialogId: string | undefined ) => {
         if (message) {
             DialogFunctions.addNewMessageIntoDialog(authUserData?._id, dialogId, message).then(res => {
+
                 if (res.status === 200) {
                     setMessage("")
                     DialogFunctions.getDialog(authUserData?._id, dialogId).then(res => setDialog(res.data.dialog)).catch(err => console.log(err))
@@ -66,6 +69,9 @@ console.log(dialog)
             <div className={style.textareaWrapper}>
                 <textarea placeholder={'type...'} value={message}
                           onChange={(e) => setMessage(e.target.value)}></textarea>
+                <button disabled={!message}> {!message ? <MdOutlineCancelScheduleSend onClick={() => addNewMessage(dialogId)}></MdOutlineCancelScheduleSend>
+
+                    :<MdOutlineSendAndArchive color={"green"} onClick={() => addNewMessage(dialogId)}></MdOutlineSendAndArchive>} </button>
             </div>
         </div>
     );

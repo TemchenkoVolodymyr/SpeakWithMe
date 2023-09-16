@@ -12,7 +12,7 @@ export type postType = {
     }
 }
 const Post = (props: postType) => {
-    console.log(props)
+
     const {post} = props
     return (
         <div className={style.wrapperPost}>

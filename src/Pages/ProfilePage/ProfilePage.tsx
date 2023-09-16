@@ -66,7 +66,7 @@ const ProfilePage = () => {
             lookForJob: authUserData.lookForJob,
             status: authUserData.status,
             socialNetwork: authUserData.socialNetwork
-         })
+         }).then(res => console.log(res))
          setEditMode(!editMod)
       }
 
@@ -96,7 +96,7 @@ const ProfilePage = () => {
    }
 
    const itemsOfList = ["aboutMe", "networks", "posts"]
-console.log(currentUserPosts)
+
    return (
       <>
          <div className={style.container}>

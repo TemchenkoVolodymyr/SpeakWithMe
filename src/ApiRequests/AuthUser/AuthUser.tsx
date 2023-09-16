@@ -1,9 +1,36 @@
 import axios from "axios";
+import {foundUserType, socialNetworkType} from "../../components/Header/Search/SearchTypes";
 
+
+type updateUserType  = {
+      email:string,
+      name: string,
+      aboutMe: string,
+      lookForJob: string,
+      status: string,
+      socialNetwork:  socialNetworkType
+}
+
+type updateUserResponseType = {
+    status:string,
+    data:{
+        date:foundUserType
+    }
+}
+
+type getUsersResponseType = {
+    status: string,
+    results: number,
+    data: {result : Array<foundUserType>}
+}
+type getUserResponseType = {
+    status: string,
+    data: {doc:foundUserType}
+}
 export const UserProfile = {
-   updateUser(idUser : any,dataToChange : any) {
+   updateUser(idUser : string ,dataToChange : updateUserType ) {
 
-      return axios.patch(`http://localhost:3001/users/${idUser}`,{
+      return axios.patch<updateUserResponseType>(`http://localhost:3001/users/${idUser}`,{
          email:dataToChange.email,
          name:dataToChange.name,
          aboutMe:dataToChange.aboutMe,
@@ -13,10 +40,11 @@ export const UserProfile = {
       })
    },
    getUsers() {
-      return axios.get('http://localhost:3001/users')
+      return axios.get<getUsersResponseType>('http://localhost:3001/users')
    },
-   getUser(idUser : any) {
-      console.log(idUser)
-      return axios.get(`http://localhost:3001/users/${idUser}`)
+   getUser(idUser : string) {
+
+      return axios.get<getUserResponseType>(`http://localhost:3001/users/${idUser}`)
    }
 }
+

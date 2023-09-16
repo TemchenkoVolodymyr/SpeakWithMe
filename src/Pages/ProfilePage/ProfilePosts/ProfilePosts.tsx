@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './ProfilePosts.module.scss'
 import Post, {postType} from "./Post/Post";
+import {getPostsResponseType} from "../../../ApiRequests/Profile/Posts";
 
 export type currentUserPostsType = {
     data:{
@@ -13,7 +14,7 @@ type profilePostsType = {
     createNewPostHandler:any,
     setPostText:any,
     postText:string,
-    currentUserPosts:currentUserPostsType
+    currentUserPosts:getPostsResponseType
 
 
 

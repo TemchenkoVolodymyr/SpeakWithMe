@@ -5,7 +5,6 @@ import {subscribesAC, subscribesActionType} from "../../Redux/Subscribes/subscri
 import {friendsThunkCreator} from "./FriendsRedux/friendsThunkCreator";
 import Friend from "./Friend/Friend";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
-import {Action} from "redux";
 
 const Friends = () => {
 

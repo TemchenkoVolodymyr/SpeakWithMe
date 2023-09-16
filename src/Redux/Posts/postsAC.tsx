@@ -1,12 +1,11 @@
 import {SET_POSTS} from "./postsReducer";
-import {PostType} from "../initialStateType";
-import {currentUserPostsType} from "../../Pages/ProfilePage/ProfilePosts/ProfilePosts";
+import {getPostsResponseType} from "../../ApiRequests/Profile/Posts";
 
 export type postsActionType = {
     type: typeof SET_POSTS,
-    newPosts: currentUserPostsType
+    newPosts: getPostsResponseType
 }
-export const postsAC = (newPosts: currentUserPostsType): postsActionType => {
+export const postsAC = (newPosts: getPostsResponseType): postsActionType => {
     console.log(newPosts)
     return {
         type: SET_POSTS,

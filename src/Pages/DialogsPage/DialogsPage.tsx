@@ -7,40 +7,40 @@ import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
 import {currentUserConversationType, interlocutorType} from "../../Redux/initialStateType";
 
 type dialogType = {
-   dialog: Array<dialogType>,
-   interlocutor:interlocutorType,
-   _id:string
+    dialog: Array<dialogType>,
+    interlocutor: interlocutorType,
+    _id: string
 }
 
 const DialogsPage = () => {
-   const authUserData = useAppSelector((state) => state.authUser)
-   const dispatch = useAppDispatch()
-   const dialogs = useAppSelector((state) => state.dialogs)
+    const authUserData = useAppSelector((state) => state.authUser)
+    const dispatch = useAppDispatch()
+    const dialogs = useAppSelector((state) => state.dialogs)
 
-   useEffect(() => {
+    useEffect(() => {
 
-      dispatch<any>(getDialogsThunkCreator(authUserData))
-   }, [authUserData])
+        dispatch<any>(getDialogsThunkCreator(authUserData))
+    }, [authUserData])
 
-   useEffect(() => {
+    useEffect(() => {
 
-   }, [dialogs])
+    }, [dialogs])
 
 
-const setCurrentUserConversation = (user :currentUserConversationType) => {
-      dispatch(CurrentUserConversationAC(user))
-}
+    const setCurrentUserConversation = (user: currentUserConversationType) => {
+        dispatch(CurrentUserConversationAC(user))
+    }
 
-   return (
+    return (
 
-      <div className={style.container}>
-         {dialogs && dialogs[0]?.user.dialogsItem.map((dialog : any) => <DialogsSection
-            setCurrentUserConversation={setCurrentUserConversation}
-            dialog={dialog}></DialogsSection>)}
+        <div className={style.container}>
+            {dialogs && dialogs[0]?.user.dialogsItem.map((dialog: any) => <DialogsSection
+                setCurrentUserConversation={setCurrentUserConversation}
+                dialog={dialog}></DialogsSection>)}
 
-      </div>
+        </div>
 
-   );
+    );
 };
 
 export default DialogsPage;

@@ -65,7 +65,7 @@ exports.getDialog = catchAsync(async (req, res, next) => {
    if (!dialogDocument) {
       return next(new ErrorHandler('No dialog under this id', 404))
    }
-   console.log(dialogDocument)
+
    const dialog = dialogDocument.user.dialogsItem.id(dialogId)
    res.status(200).json({
       status: 'success',

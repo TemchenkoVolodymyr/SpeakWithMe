@@ -9,11 +9,12 @@ let Registration = (props : any) => {
 
    const loginData = useAppSelector((state) => getFormValues('registration')(state))
 
-   const name = loginData?.registration?.values?.name
-   const email = loginData?.registration?.values?.email
-   const password = loginData?.registration?.values?.password
-   const confirmPassword = loginData?.registration?.values?.confirmPassword
-
+   const name = loginData?.name
+   const email = loginData?.email
+   const password = loginData?.password
+   const confirmPassword = loginData?.confirmPassword
+console.log(name)
+console.log(loginData)
    const registerHandler = (e:any) => {
       e.preventDefault()
       handleSubmit(email, name, password, confirmPassword)

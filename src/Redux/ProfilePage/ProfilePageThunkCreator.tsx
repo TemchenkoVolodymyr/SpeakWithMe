@@ -21,7 +21,7 @@ export const getUserPostsThunkCreator = (currentUser: foundUserType): ThunkActio
 }
 
 
-type dataOfPostType = {
+export type dataOfPostType = {
     post: string,
     authorName: string,
     authorId: string
@@ -31,34 +31,21 @@ export const createPostThunkCreator = (dataOfPost: dataOfPostType, currentUser: 
     return async (dispatch) => {
         Posts.createPost(dataOfPost).then(res => {
             if (res.status === 200) {
-                Posts.getPosts(currentUser?._id).then(res => dispatch(postsAC(res.data)))
+                Posts.getPosts(currentUser?._id).then(res => {
+                    console.log(res)
+                    dispatch(postsAC(res.data))
+                })
                 setPostText("")
             }
         })
     }
 }
 
-
-type dialogType = {
-   _id : string,
-   interlocutor : {
-      id:string,
-      name:string,
-      photo:null | string
-   },
-   dialog:[{
-      id:string,
-      sender:string,
-      message:string,
-      date:string
-   }]
-
-}
 export const createDialogRoomHandler = (authUserData: foundUserType, interlocutor: foundUserType,message: string, setMessage: Function,navigate: Function) => {
 
     DialogFunctions.getDialogsCurrentAuthUser(authUserData._id).then(res => {
         if (res.data.data.dialogs.length >= 1) {
-            const isConversation = res.data.data.dialogs[0].user.dialogsItem.find((dialog: dialogType) => dialog.interlocutor.id === interlocutor._id)
+            const isConversation = res.data.data.dialogs[0].user.dialogsItem.find((dialog) => dialog.interlocutor.id === interlocutor._id)
             if (!isConversation) {
                 DialogFunctions.addNewDialogs(authUserData._id, interlocutor, message).then(res => {
                     if (res.status === 200) {
